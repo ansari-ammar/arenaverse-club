@@ -392,6 +392,9 @@ function Footer() {
             <span className="font-display font-black tracking-wider">ARENAVERSE</span>
             <span className="opacity-60">© 2026</span>
           </div>
+          <div className="text-xs uppercase tracking-[0.25em]">
+            Founded by <span className="neon-text-gold font-bold">Ammar Ansari</span>
+          </div>
           <div className="flex gap-6">
             <a href="#" className="hover:text-neon-cyan transition">Privacy</a>
             <a href="#" className="hover:text-neon-cyan transition">Terms</a>
