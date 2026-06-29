@@ -20,14 +20,14 @@ export const Route = createFileRoute("/")({
 const NAV = ["Home", "Gaming", "Movies", "Leaderboard", "Food", "Membership", "Rewards", "Events", "Support"];
 
 const GAMES = [
-  { name: "FIFA 25", genre: "Sports", players: "1-4", price: "₹120", rating: 4.9, hue: "from-purple-500 to-pink-500" },
-  { name: "Call of Duty", genre: "FPS", players: "1-6", price: "₹150", rating: 4.8, hue: "from-blue-500 to-cyan-500" },
-  { name: "GTA V", genre: "Open World", players: "1-2", price: "₹100", rating: 4.9, hue: "from-fuchsia-500 to-purple-500" },
-  { name: "Valorant", genre: "Tactical", players: "1-5", price: "₹140", rating: 4.7, hue: "from-red-500 to-orange-500" },
-  { name: "Tekken 8", genre: "Fighting", players: "1-2", price: "₹110", rating: 4.8, hue: "from-amber-500 to-red-500" },
-  { name: "Minecraft", genre: "Sandbox", players: "1-4", price: "₹90", rating: 4.9, hue: "from-emerald-500 to-cyan-500" },
-  { name: "PUBG", genre: "Battle Royale", players: "1-4", price: "₹130", rating: 4.6, hue: "from-yellow-500 to-orange-600" },
-  { name: "Need for Speed", genre: "Racing", players: "1-2", price: "₹120", rating: 4.7, hue: "from-cyan-400 to-blue-600" },
+  { name: "FIFA 25", genre: "Sports", players: "1-4", price: "₹120", rating: 4.9, img: fifaImg },
+  { name: "Call of Duty", genre: "FPS", players: "1-6", price: "₹150", rating: 4.8, img: codImg },
+  { name: "GTA V", genre: "Open World", players: "1-2", price: "₹100", rating: 4.9, img: gtaImg },
+  { name: "Valorant", genre: "Tactical", players: "1-5", price: "₹140", rating: 4.7, img: valorantImg },
+  { name: "Tekken 8", genre: "Fighting", players: "1-2", price: "₹110", rating: 4.8, img: tekkenImg },
+  { name: "Minecraft", genre: "Sandbox", players: "1-4", price: "₹90", rating: 4.9, img: minecraftImg },
+  { name: "PUBG", genre: "Battle Royale", players: "1-4", price: "₹130", rating: 4.6, img: pubgImg },
+  { name: "Need for Speed", genre: "Racing", players: "1-2", price: "₹120", rating: 4.7, img: nfsImg },
 ];
 
 const MOVIES = [
