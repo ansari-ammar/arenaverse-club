@@ -3,6 +3,15 @@ import { useEffect, useState } from "react";
 import heroImg from "@/assets/hero-arena.jpg";
 import gamingImg from "@/assets/gaming-card.jpg";
 import cinemaImg from "@/assets/cinema-card.jpg";
+import fifaImg from "@/assets/games/fifa.jpg";
+import codImg from "@/assets/games/cod.jpg";
+import gtaImg from "@/assets/games/gta.jpg";
+import valorantImg from "@/assets/games/valorant.jpg";
+import tekkenImg from "@/assets/games/tekken.jpg";
+import minecraftImg from "@/assets/games/minecraft.jpg";
+import pubgImg from "@/assets/games/pubg.jpg";
+import nfsImg from "@/assets/games/nfs.jpg";
+import { Link } from "@tanstack/react-router";
 
 export const Route = createFileRoute("/")({
   component: ArenaVerse,
