@@ -108,7 +108,7 @@ function Nav() {
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <button className="hidden sm:inline text-sm text-muted-foreground hover:text-foreground transition">Sign in</button>
+          <Link to="/login" className="hidden sm:inline text-sm text-muted-foreground hover:text-foreground transition">Sign in</Link>
           <button className="btn-primary text-sm">Join Club</button>
         </div>
       </div>
