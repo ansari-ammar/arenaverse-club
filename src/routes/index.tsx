@@ -229,12 +229,12 @@ function Gaming() {
       <SectionHeader kicker="Gaming Zone" title="Ultimate Gaming Experience" sub="From competitive FPS to chill open-world adventures — pick your title, book a slot, and let the arena handle the rest." />
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
         {GAMES.map((g) => (
-          <div key={g.name} className="group relative overflow-hidden rounded-2xl glass p-0.5 transition-all hover:-translate-y-1">
-            <div className="relative rounded-[14px] bg-card p-5">
-              <div className={`absolute inset-x-0 -top-px h-px bg-gradient-to-r ${g.hue} opacity-60`} />
-              <div className={`h-28 rounded-xl bg-gradient-to-br ${g.hue} relative overflow-hidden mb-4`}>
-                <div className="absolute inset-0 bg-black/30" />
-                <div className="absolute bottom-2 right-2 glass rounded-md px-2 py-0.5 text-xs">★ {g.rating}</div>
+          <div key={g.name} className="group relative overflow-hidden rounded-2xl glass p-0.5 transition-all hover:-translate-y-1 hover:glow-purple">
+            <div className="relative rounded-[14px] bg-card p-4">
+              <div className="relative h-36 rounded-xl overflow-hidden mb-4">
+                <img src={g.img} alt={g.name} width={800} height={600} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/10 to-transparent" />
+                <div className="absolute top-2 right-2 glass rounded-md px-2 py-0.5 text-xs text-neon-gold">★ {g.rating}</div>
               </div>
               <div className="flex items-start justify-between gap-2">
                 <h3 className="font-display text-lg font-bold">{g.name}</h3>
