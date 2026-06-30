@@ -9,24 +9,49 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as SupportRouteImport } from './routes/support'
 import { Route as ReceiptRouteImport } from './routes/receipt'
+import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as PaymentRouteImport } from './routes/payment'
 import { Route as PassRouteImport } from './routes/pass'
+import { Route as MoviesRouteImport } from './routes/movies'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as FoodRouteImport } from './routes/food'
 import { Route as BookingRouteImport } from './routes/booking'
 import { Route as IndexRouteImport } from './routes/index'
 import { Route as MoviesSeatsRouteImport } from './routes/movies.seats'
 import { Route as MoviesCheckoutRouteImport } from './routes/movies.checkout'
+import { Route as MoviesBookSeatRouteImport } from './routes/movies.book-seat'
+import { Route as GamingPassRouteImport } from './routes/gaming.pass'
 import { Route as GamingCheckoutRouteImport } from './routes/gaming.checkout'
 import { Route as GamingBookingRouteImport } from './routes/gaming.booking'
+import { Route as EventsTournamentsRouteImport } from './routes/events.tournaments'
 import { Route as AuthVerifyOtpRouteImport } from './routes/auth.verify-otp'
+import { Route as AuthVerifyRouteImport } from './routes/auth.verify'
 import { Route as AuthUniversityLoginRouteImport } from './routes/auth.university-login'
 import { Route as AuthSuccessRouteImport } from './routes/auth.success'
+import { Route as AuthSignupRouteImport } from './routes/auth.signup'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AuthGuestLoginRouteImport } from './routes/auth.guest-login'
 
+const SupportRoute = SupportRouteImport.update({
+  id: '/support',
+  path: '/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const ReceiptRoute = ReceiptRouteImport.update({
   id: '/receipt',
   path: '/receipt',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const ProfileRoute = ProfileRouteImport.update({
+  id: '/profile',
+  path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PaymentRoute = PaymentRouteImport.update({
+  id: '/payment',
+  path: '/payment',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PassRoute = PassRouteImport.update({
@@ -34,9 +59,19 @@ const PassRoute = PassRouteImport.update({
   path: '/pass',
   getParentRoute: () => rootRouteImport,
 } as any)
+const MoviesRoute = MoviesRouteImport.update({
+  id: '/movies',
+  path: '/movies',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const FoodRoute = FoodRouteImport.update({
+  id: '/food',
+  path: '/food',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BookingRoute = BookingRouteImport.update({
@@ -50,13 +85,23 @@ const IndexRoute = IndexRouteImport.update({
   getParentRoute: () => rootRouteImport,
 } as any)
 const MoviesSeatsRoute = MoviesSeatsRouteImport.update({
-  id: '/movies/seats',
-  path: '/movies/seats',
-  getParentRoute: () => rootRouteImport,
+  id: '/seats',
+  path: '/seats',
+  getParentRoute: () => MoviesRoute,
 } as any)
 const MoviesCheckoutRoute = MoviesCheckoutRouteImport.update({
-  id: '/movies/checkout',
-  path: '/movies/checkout',
+  id: '/checkout',
+  path: '/checkout',
+  getParentRoute: () => MoviesRoute,
+} as any)
+const MoviesBookSeatRoute = MoviesBookSeatRouteImport.update({
+  id: '/book-seat',
+  path: '/book-seat',
+  getParentRoute: () => MoviesRoute,
+} as any)
+const GamingPassRoute = GamingPassRouteImport.update({
+  id: '/gaming/pass',
+  path: '/gaming/pass',
   getParentRoute: () => rootRouteImport,
 } as any)
 const GamingCheckoutRoute = GamingCheckoutRouteImport.update({
@@ -69,9 +114,19 @@ const GamingBookingRoute = GamingBookingRouteImport.update({
   path: '/gaming/booking',
   getParentRoute: () => rootRouteImport,
 } as any)
+const EventsTournamentsRoute = EventsTournamentsRouteImport.update({
+  id: '/events/tournaments',
+  path: '/events/tournaments',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const AuthVerifyOtpRoute = AuthVerifyOtpRouteImport.update({
   id: '/auth/verify-otp',
   path: '/auth/verify-otp',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthVerifyRoute = AuthVerifyRouteImport.update({
+  id: '/auth/verify',
+  path: '/auth/verify',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthUniversityLoginRoute = AuthUniversityLoginRouteImport.update({
@@ -82,6 +137,11 @@ const AuthUniversityLoginRoute = AuthUniversityLoginRouteImport.update({
 const AuthSuccessRoute = AuthSuccessRouteImport.update({
   id: '/auth/success',
   path: '/auth/success',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AuthSignupRoute = AuthSignupRouteImport.update({
+  id: '/auth/signup',
+  path: '/auth/signup',
   getParentRoute: () => rootRouteImport,
 } as any)
 const AuthLoginRoute = AuthLoginRouteImport.update({
@@ -98,32 +158,52 @@ const AuthGuestLoginRoute = AuthGuestLoginRouteImport.update({
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/booking': typeof BookingRoute
+  '/food': typeof FoodRoute
   '/login': typeof LoginRoute
+  '/movies': typeof MoviesRouteWithChildren
   '/pass': typeof PassRoute
+  '/payment': typeof PaymentRoute
+  '/profile': typeof ProfileRoute
   '/receipt': typeof ReceiptRoute
+  '/support': typeof SupportRoute
   '/auth/guest-login': typeof AuthGuestLoginRoute
   '/auth/login': typeof AuthLoginRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/auth/success': typeof AuthSuccessRoute
   '/auth/university-login': typeof AuthUniversityLoginRoute
+  '/auth/verify': typeof AuthVerifyRoute
   '/auth/verify-otp': typeof AuthVerifyOtpRoute
+  '/events/tournaments': typeof EventsTournamentsRoute
   '/gaming/booking': typeof GamingBookingRoute
   '/gaming/checkout': typeof GamingCheckoutRoute
+  '/gaming/pass': typeof GamingPassRoute
+  '/movies/book-seat': typeof MoviesBookSeatRoute
   '/movies/checkout': typeof MoviesCheckoutRoute
   '/movies/seats': typeof MoviesSeatsRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/booking': typeof BookingRoute
+  '/food': typeof FoodRoute
   '/login': typeof LoginRoute
+  '/movies': typeof MoviesRouteWithChildren
   '/pass': typeof PassRoute
+  '/payment': typeof PaymentRoute
+  '/profile': typeof ProfileRoute
   '/receipt': typeof ReceiptRoute
+  '/support': typeof SupportRoute
   '/auth/guest-login': typeof AuthGuestLoginRoute
   '/auth/login': typeof AuthLoginRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/auth/success': typeof AuthSuccessRoute
   '/auth/university-login': typeof AuthUniversityLoginRoute
+  '/auth/verify': typeof AuthVerifyRoute
   '/auth/verify-otp': typeof AuthVerifyOtpRoute
+  '/events/tournaments': typeof EventsTournamentsRoute
   '/gaming/booking': typeof GamingBookingRoute
   '/gaming/checkout': typeof GamingCheckoutRoute
+  '/gaming/pass': typeof GamingPassRoute
+  '/movies/book-seat': typeof MoviesBookSeatRoute
   '/movies/checkout': typeof MoviesCheckoutRoute
   '/movies/seats': typeof MoviesSeatsRoute
 }
@@ -131,16 +211,26 @@ export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
   '/booking': typeof BookingRoute
+  '/food': typeof FoodRoute
   '/login': typeof LoginRoute
+  '/movies': typeof MoviesRouteWithChildren
   '/pass': typeof PassRoute
+  '/payment': typeof PaymentRoute
+  '/profile': typeof ProfileRoute
   '/receipt': typeof ReceiptRoute
+  '/support': typeof SupportRoute
   '/auth/guest-login': typeof AuthGuestLoginRoute
   '/auth/login': typeof AuthLoginRoute
+  '/auth/signup': typeof AuthSignupRoute
   '/auth/success': typeof AuthSuccessRoute
   '/auth/university-login': typeof AuthUniversityLoginRoute
+  '/auth/verify': typeof AuthVerifyRoute
   '/auth/verify-otp': typeof AuthVerifyOtpRoute
+  '/events/tournaments': typeof EventsTournamentsRoute
   '/gaming/booking': typeof GamingBookingRoute
   '/gaming/checkout': typeof GamingCheckoutRoute
+  '/gaming/pass': typeof GamingPassRoute
+  '/movies/book-seat': typeof MoviesBookSeatRoute
   '/movies/checkout': typeof MoviesCheckoutRoute
   '/movies/seats': typeof MoviesSeatsRoute
 }
@@ -149,48 +239,78 @@ export interface FileRouteTypes {
   fullPaths:
     | '/'
     | '/booking'
+    | '/food'
     | '/login'
+    | '/movies'
     | '/pass'
+    | '/payment'
+    | '/profile'
     | '/receipt'
+    | '/support'
     | '/auth/guest-login'
     | '/auth/login'
+    | '/auth/signup'
     | '/auth/success'
     | '/auth/university-login'
+    | '/auth/verify'
     | '/auth/verify-otp'
+    | '/events/tournaments'
     | '/gaming/booking'
     | '/gaming/checkout'
+    | '/gaming/pass'
+    | '/movies/book-seat'
     | '/movies/checkout'
     | '/movies/seats'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/booking'
+    | '/food'
     | '/login'
+    | '/movies'
     | '/pass'
+    | '/payment'
+    | '/profile'
     | '/receipt'
+    | '/support'
     | '/auth/guest-login'
     | '/auth/login'
+    | '/auth/signup'
     | '/auth/success'
     | '/auth/university-login'
+    | '/auth/verify'
     | '/auth/verify-otp'
+    | '/events/tournaments'
     | '/gaming/booking'
     | '/gaming/checkout'
+    | '/gaming/pass'
+    | '/movies/book-seat'
     | '/movies/checkout'
     | '/movies/seats'
   id:
     | '__root__'
     | '/'
     | '/booking'
+    | '/food'
     | '/login'
+    | '/movies'
     | '/pass'
+    | '/payment'
+    | '/profile'
     | '/receipt'
+    | '/support'
     | '/auth/guest-login'
     | '/auth/login'
+    | '/auth/signup'
     | '/auth/success'
     | '/auth/university-login'
+    | '/auth/verify'
     | '/auth/verify-otp'
+    | '/events/tournaments'
     | '/gaming/booking'
     | '/gaming/checkout'
+    | '/gaming/pass'
+    | '/movies/book-seat'
     | '/movies/checkout'
     | '/movies/seats'
   fileRoutesById: FileRoutesById
@@ -198,27 +318,55 @@ export interface FileRouteTypes {
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   BookingRoute: typeof BookingRoute
+  FoodRoute: typeof FoodRoute
   LoginRoute: typeof LoginRoute
+  MoviesRoute: typeof MoviesRouteWithChildren
   PassRoute: typeof PassRoute
+  PaymentRoute: typeof PaymentRoute
+  ProfileRoute: typeof ProfileRoute
   ReceiptRoute: typeof ReceiptRoute
+  SupportRoute: typeof SupportRoute
   AuthGuestLoginRoute: typeof AuthGuestLoginRoute
   AuthLoginRoute: typeof AuthLoginRoute
+  AuthSignupRoute: typeof AuthSignupRoute
   AuthSuccessRoute: typeof AuthSuccessRoute
   AuthUniversityLoginRoute: typeof AuthUniversityLoginRoute
+  AuthVerifyRoute: typeof AuthVerifyRoute
   AuthVerifyOtpRoute: typeof AuthVerifyOtpRoute
+  EventsTournamentsRoute: typeof EventsTournamentsRoute
   GamingBookingRoute: typeof GamingBookingRoute
   GamingCheckoutRoute: typeof GamingCheckoutRoute
-  MoviesCheckoutRoute: typeof MoviesCheckoutRoute
-  MoviesSeatsRoute: typeof MoviesSeatsRoute
+  GamingPassRoute: typeof GamingPassRoute
 }
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/support': {
+      id: '/support'
+      path: '/support'
+      fullPath: '/support'
+      preLoaderRoute: typeof SupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/receipt': {
       id: '/receipt'
       path: '/receipt'
       fullPath: '/receipt'
       preLoaderRoute: typeof ReceiptRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/profile': {
+      id: '/profile'
+      path: '/profile'
+      fullPath: '/profile'
+      preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/payment': {
+      id: '/payment'
+      path: '/payment'
+      fullPath: '/payment'
+      preLoaderRoute: typeof PaymentRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/pass': {
@@ -228,11 +376,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof PassRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/movies': {
+      id: '/movies'
+      path: '/movies'
+      fullPath: '/movies'
+      preLoaderRoute: typeof MoviesRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/login': {
       id: '/login'
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/food': {
+      id: '/food'
+      path: '/food'
+      fullPath: '/food'
+      preLoaderRoute: typeof FoodRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/booking': {
@@ -251,16 +413,30 @@ declare module '@tanstack/react-router' {
     }
     '/movies/seats': {
       id: '/movies/seats'
-      path: '/movies/seats'
+      path: '/seats'
       fullPath: '/movies/seats'
       preLoaderRoute: typeof MoviesSeatsRouteImport
-      parentRoute: typeof rootRouteImport
+      parentRoute: typeof MoviesRoute
     }
     '/movies/checkout': {
       id: '/movies/checkout'
-      path: '/movies/checkout'
+      path: '/checkout'
       fullPath: '/movies/checkout'
       preLoaderRoute: typeof MoviesCheckoutRouteImport
+      parentRoute: typeof MoviesRoute
+    }
+    '/movies/book-seat': {
+      id: '/movies/book-seat'
+      path: '/book-seat'
+      fullPath: '/movies/book-seat'
+      preLoaderRoute: typeof MoviesBookSeatRouteImport
+      parentRoute: typeof MoviesRoute
+    }
+    '/gaming/pass': {
+      id: '/gaming/pass'
+      path: '/gaming/pass'
+      fullPath: '/gaming/pass'
+      preLoaderRoute: typeof GamingPassRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/gaming/checkout': {
@@ -277,11 +453,25 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof GamingBookingRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/events/tournaments': {
+      id: '/events/tournaments'
+      path: '/events/tournaments'
+      fullPath: '/events/tournaments'
+      preLoaderRoute: typeof EventsTournamentsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/auth/verify-otp': {
       id: '/auth/verify-otp'
       path: '/auth/verify-otp'
       fullPath: '/auth/verify-otp'
       preLoaderRoute: typeof AuthVerifyOtpRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/verify': {
+      id: '/auth/verify'
+      path: '/auth/verify'
+      fullPath: '/auth/verify'
+      preLoaderRoute: typeof AuthVerifyRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth/university-login': {
@@ -296,6 +486,13 @@ declare module '@tanstack/react-router' {
       path: '/auth/success'
       fullPath: '/auth/success'
       preLoaderRoute: typeof AuthSuccessRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/auth/signup': {
+      id: '/auth/signup'
+      path: '/auth/signup'
+      fullPath: '/auth/signup'
+      preLoaderRoute: typeof AuthSignupRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/auth/login': {
@@ -315,21 +512,43 @@ declare module '@tanstack/react-router' {
   }
 }
 
+interface MoviesRouteChildren {
+  MoviesBookSeatRoute: typeof MoviesBookSeatRoute
+  MoviesCheckoutRoute: typeof MoviesCheckoutRoute
+  MoviesSeatsRoute: typeof MoviesSeatsRoute
+}
+
+const MoviesRouteChildren: MoviesRouteChildren = {
+  MoviesBookSeatRoute: MoviesBookSeatRoute,
+  MoviesCheckoutRoute: MoviesCheckoutRoute,
+  MoviesSeatsRoute: MoviesSeatsRoute,
+}
+
+const MoviesRouteWithChildren =
+  MoviesRoute._addFileChildren(MoviesRouteChildren)
+
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   BookingRoute: BookingRoute,
+  FoodRoute: FoodRoute,
   LoginRoute: LoginRoute,
+  MoviesRoute: MoviesRouteWithChildren,
   PassRoute: PassRoute,
+  PaymentRoute: PaymentRoute,
+  ProfileRoute: ProfileRoute,
   ReceiptRoute: ReceiptRoute,
+  SupportRoute: SupportRoute,
   AuthGuestLoginRoute: AuthGuestLoginRoute,
   AuthLoginRoute: AuthLoginRoute,
+  AuthSignupRoute: AuthSignupRoute,
   AuthSuccessRoute: AuthSuccessRoute,
   AuthUniversityLoginRoute: AuthUniversityLoginRoute,
+  AuthVerifyRoute: AuthVerifyRoute,
   AuthVerifyOtpRoute: AuthVerifyOtpRoute,
+  EventsTournamentsRoute: EventsTournamentsRoute,
   GamingBookingRoute: GamingBookingRoute,
   GamingCheckoutRoute: GamingCheckoutRoute,
-  MoviesCheckoutRoute: MoviesCheckoutRoute,
-  MoviesSeatsRoute: MoviesSeatsRoute,
+  GamingPassRoute: GamingPassRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
