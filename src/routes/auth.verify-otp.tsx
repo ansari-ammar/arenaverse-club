@@ -51,7 +51,9 @@ function VerifyOtp() {
     setTimeout(() => {
       if (code === "000000") return setStatus("failed");
       setStatus("success");
-      const fallbackName = pendingType === "university" ? "UU Student" : (pendingContact?.includes("@") ? pendingContact.split("@")[0] : "Arena Guest");
+      const stored = (typeof sessionStorage !== "undefined" && sessionStorage.getItem("arena_pending_name")) || "";
+      const fallbackName = stored || (pendingType === "university" ? "UU Student" : (pendingContact?.includes("@") ? pendingContact.split("@")[0] : "Arena Guest"));
+      try { sessionStorage.removeItem("arena_pending_name"); } catch {}
       arena.completeLogin(fallbackName);
       setTimeout(() => nav({ to: "/auth/success" }), 900);
     }, 900);

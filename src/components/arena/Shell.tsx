@@ -16,19 +16,21 @@ export function ArenaShell({ children, title }: { children: ReactNode; title?: s
             <div className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-neon-purple to-neon-blue glow-purple font-display font-black">A</div>
             <span className="font-display text-lg font-black tracking-wider neon-text">ARENAVERSE</span>
           </Link>
-          <nav className="hidden md:flex items-center gap-6 text-sm text-muted-foreground">
-            <Link to="/booking" className="hover:text-foreground">Book</Link>
+          <nav className="hidden md:flex items-center gap-5 text-sm text-muted-foreground">
+            <Link to="/movies" className="hover:text-foreground">Movies</Link>
             <Link to="/gaming/booking" className="hover:text-foreground">Gaming</Link>
-            <Link to="/movies/seats" className="hover:text-foreground">Movies</Link>
+            <Link to="/events/tournaments" className="hover:text-foreground">Tournaments</Link>
+            <Link to="/food" className="hover:text-foreground">Food</Link>
             <Link to="/pass" className="hover:text-foreground">My Pass</Link>
+            <Link to="/support" className="hover:text-foreground">Support</Link>
           </nav>
           <div className="flex items-center gap-3">
             {user ? (
               <>
-                <span className="hidden sm:inline text-xs text-muted-foreground">
+                <Link to="/profile" className="hidden sm:inline text-xs text-muted-foreground hover:text-foreground">
                   Hi, <span className="text-foreground font-semibold">{user.name}</span>
                   {user.type === "university" && <span className="ml-2 rounded-full bg-neon-gold/15 px-2 py-0.5 text-[10px] uppercase tracking-wider text-neon-gold">UU · -{user.discountPct}%</span>}
-                </span>
+                </Link>
                 <button onClick={() => arena.logout()} className="text-xs text-muted-foreground hover:text-foreground">Logout</button>
               </>
             ) : (
