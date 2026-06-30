@@ -47,7 +47,7 @@ function GamingBooking() {
       }),
       pricing: { base: baseGame, food: foodTotal, tax, discount, total },
     });
-    nav({ to: "/gaming/checkout" });
+    nav({ to: "/payment" });
   }
 
   return (
