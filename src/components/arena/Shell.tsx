@@ -27,10 +27,10 @@ export function ArenaShell({ children, title }: { children: ReactNode; title?: s
           <div className="flex items-center gap-3">
             {user ? (
               <>
-                <span className="hidden sm:inline text-xs text-muted-foreground">
+                <Link to="/profile" className="hidden sm:inline text-xs text-muted-foreground hover:text-foreground">
                   Hi, <span className="text-foreground font-semibold">{user.name}</span>
                   {user.type === "university" && <span className="ml-2 rounded-full bg-neon-gold/15 px-2 py-0.5 text-[10px] uppercase tracking-wider text-neon-gold">UU · -{user.discountPct}%</span>}
-                </span>
+                </Link>
                 <button onClick={() => arena.logout()} className="text-xs text-muted-foreground hover:text-foreground">Logout</button>
               </>
             ) : (
