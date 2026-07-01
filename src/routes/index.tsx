@@ -1,4 +1,4 @@
-import { createFileRoute } from "@tanstack/react-router";
+import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import heroImg from "@/assets/hero-arena.jpg";
 import gamingImg from "@/assets/gaming-card.jpg";
@@ -11,13 +11,36 @@ import tekkenImg from "@/assets/games/tekken.jpg";
 import minecraftImg from "@/assets/games/minecraft.jpg";
 import pubgImg from "@/assets/games/pubg.jpg";
 import nfsImg from "@/assets/games/nfs.jpg";
-import { Link } from "@tanstack/react-router";
+import { arena, useArena } from "@/lib/arena-store";
 
 export const Route = createFileRoute("/")({
   component: ArenaVerse,
 });
 
-const NAV = ["Home", "Gaming", "Movies", "Leaderboard", "Food", "Membership", "Rewards", "Events", "Support"];
+// Every nav item maps to a real route
+const NAV: { label: string; to: string }[] = [
+  { label: "Home", to: "/" },
+  { label: "Gaming", to: "/gaming/booking" },
+  { label: "Movies", to: "/movies" },
+  { label: "Leaderboard", to: "/events/tournaments" },
+  { label: "Food", to: "/food" },
+  { label: "Tournaments", to: "/events/tournaments" },
+  { label: "Support", to: "/support" },
+  { label: "About", to: "/about" },
+];
+
+const DRAWER: { label: string; to: string; icon: string }[] = [
+  { label: "Home", to: "/", icon: "🏠" },
+  { label: "Gaming", to: "/gaming/booking", icon: "🎮" },
+  { label: "Movies", to: "/movies", icon: "🎬" },
+  { label: "Book Experience", to: "/booking", icon: "🎟️" },
+  { label: "Food Lounge", to: "/food", icon: "🍿" },
+  { label: "Tournaments", to: "/events/tournaments", icon: "🏆" },
+  { label: "My Pass", to: "/pass", icon: "🪪" },
+  { label: "Profile", to: "/profile", icon: "👤" },
+  { label: "Support", to: "/support", icon: "🛟" },
+  { label: "About", to: "/about", icon: "✨" },
+];
 
 const GAMES = [
   { name: "FIFA 25", genre: "Sports", players: "1-4", price: "₹120", rating: 4.9, img: fifaImg },
@@ -58,6 +81,7 @@ const FOOD = [
 
 function ArenaVerse() {
   const [count, setCount] = useState(127);
+  const [menuOpen, setMenuOpen] = useState(false);
   useEffect(() => {
     const i = setInterval(() => setCount((c) => c + Math.floor(Math.random() * 3) - 1), 2500);
     return () => clearInterval(i);
@@ -65,14 +89,14 @@ function ArenaVerse() {
 
   return (
     <div className="min-h-screen overflow-x-hidden">
-      {/* Ambient orbs */}
       <div className="pointer-events-none fixed inset-0 -z-10">
         <div className="absolute -top-40 -left-40 h-[500px] w-[500px] rounded-full bg-neon-purple/30 blur-[120px]" />
         <div className="absolute top-1/3 -right-40 h-[500px] w-[500px] rounded-full bg-neon-blue/25 blur-[120px]" />
         <div className="absolute bottom-0 left-1/3 h-[400px] w-[400px] rounded-full bg-neon-cyan/15 blur-[120px]" />
       </div>
 
-      <Nav />
+      <Nav onMenu={() => setMenuOpen(true)} />
+      {menuOpen && <Drawer onClose={() => setMenuOpen(false)} />}
       <Hero count={count} />
       <Marquee />
       <SplitExperience />
@@ -83,36 +107,122 @@ function ArenaVerse() {
       <Membership />
       <Footer />
 
-      {/* Floating CTA */}
-      <a
-        href="#book"
+      <Link
+        to="/booking"
         className="fixed bottom-6 right-6 z-40 btn-primary text-sm uppercase tracking-widest animate-pulse-glow"
       >
         ⚡ Book Your Experience
-      </a>
+      </Link>
     </div>
   );
 }
 
-function Nav() {
+function Nav({ onMenu }: { onMenu: () => void }) {
+  const user = useArena((s) => s.user);
   return (
     <header className="sticky top-0 z-50 glass border-b border-white/5">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4">
-        <a href="#" className="flex items-center gap-2.5 shrink-0">
-          <div className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-neon-purple to-neon-blue glow-purple font-display font-black">A</div>
-          <span className="font-display text-xl font-black tracking-wider neon-text">ARENAVERSE</span>
-        </a>
+        <div className="flex items-center gap-3">
+          <button
+            onClick={onMenu}
+            aria-label="Open menu"
+            className="grid h-9 w-9 place-items-center rounded-xl glass hover:glow-purple transition"
+          >
+            <span className="flex flex-col gap-1">
+              <span className="block h-0.5 w-4 bg-foreground" />
+              <span className="block h-0.5 w-4 bg-foreground" />
+              <span className="block h-0.5 w-4 bg-foreground" />
+            </span>
+          </button>
+          <Link to="/" className="flex items-center gap-2.5 shrink-0">
+            <div className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-neon-purple to-neon-blue glow-purple font-display font-black">A</div>
+            <span className="font-display text-xl font-black tracking-wider neon-text">ARENAVERSE</span>
+          </Link>
+        </div>
         <nav className="hidden lg:flex items-center gap-7 text-sm text-muted-foreground">
           {NAV.map((n) => (
-            <a key={n} href={`#${n.toLowerCase()}`} className="hover:text-neon-cyan transition-colors">{n}</a>
+            <Link key={n.label} to={n.to} className="hover:text-neon-cyan transition-colors">{n.label}</Link>
           ))}
         </nav>
         <div className="flex items-center gap-3">
-          <Link to="/login" className="hidden sm:inline text-sm text-muted-foreground hover:text-foreground transition">Sign in</Link>
-          <button className="btn-primary text-sm">Join Club</button>
+          {user ? (
+            <>
+              <Link to="/profile" className="hidden sm:inline text-sm text-muted-foreground hover:text-foreground transition">
+                Hi, <span className="text-foreground font-semibold">{user.name}</span>
+              </Link>
+              <Link to="/booking" className="btn-primary text-sm">Book</Link>
+            </>
+          ) : (
+            <>
+              <Link to="/auth/login" className="hidden sm:inline text-sm text-muted-foreground hover:text-foreground transition">Sign in</Link>
+              <Link to="/auth/signup" className="btn-primary text-sm">Join Club</Link>
+            </>
+          )}
         </div>
       </div>
     </header>
+  );
+}
+
+function Drawer({ onClose }: { onClose: () => void }) {
+  const user = useArena((s) => s.user);
+  useEffect(() => {
+    const onEsc = (e: KeyboardEvent) => e.key === "Escape" && onClose();
+    window.addEventListener("keydown", onEsc);
+    return () => window.removeEventListener("keydown", onEsc);
+  }, [onClose]);
+  return (
+    <div className="fixed inset-0 z-[60]">
+      <button aria-label="Close" onClick={onClose} className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
+      <aside className="absolute left-0 top-0 h-full w-[320px] max-w-[85vw] glass border-r border-border p-6 overflow-y-auto animate-in slide-in-from-left">
+        <div className="flex items-center justify-between">
+          <span className="font-display font-black neon-text tracking-wider">ARENAVERSE</span>
+          <button onClick={onClose} className="h-8 w-8 rounded-full glass" aria-label="Close">✕</button>
+        </div>
+        {user && (
+          <div className="mt-5 rounded-xl glass p-3">
+            <p className="text-xs text-muted-foreground">Signed in as</p>
+            <p className="font-semibold">{user.name}</p>
+          </div>
+        )}
+        <nav className="mt-5 flex flex-col gap-1">
+          {DRAWER.map((m) => (
+            <Link
+              key={m.label}
+              to={m.to}
+              onClick={onClose}
+              className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm hover:bg-neon-purple/15 hover:text-foreground text-muted-foreground transition"
+            >
+              <span className="text-base">{m.icon}</span>
+              {m.label}
+            </Link>
+          ))}
+          <div className="my-3 h-px bg-border" />
+          {user ? (
+            <button
+              onClick={() => { arena.logout(); onClose(); }}
+              className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm text-muted-foreground hover:text-foreground"
+            >
+              <span>🚪</span> Logout
+            </button>
+          ) : (
+            <>
+              <Link to="/auth/login" onClick={onClose} className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm hover:bg-neon-purple/15">
+                <span>🔐</span> Login
+              </Link>
+              <Link to="/auth/signup" onClick={onClose} className="flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm hover:bg-neon-purple/15">
+                <span>✨</span> Sign up
+              </Link>
+            </>
+          )}
+        </nav>
+        <div className="mt-6 rounded-xl border border-border p-3 text-[11px] text-muted-foreground">
+          <p className="font-semibold text-foreground">Contact</p>
+          <p className="mt-1">Ammar Ansari · Founder</p>
+          <a href="tel:9120106944" className="text-neon-cyan hover:underline">+91 91201 06944</a>
+        </div>
+      </aside>
+    </div>
   );
 }
 
@@ -144,24 +254,24 @@ function Hero({ count }: { count: number }) {
         </p>
 
         <div className="mt-10 flex flex-wrap gap-4">
-          <a href="#gaming" className="btn-primary">🎮 Play Now</a>
-          <a href="#movies" className="btn-ghost-neon">🎬 Book Movie</a>
-          <a href="#membership" className="text-sm text-muted-foreground hover:text-foreground px-4 py-3 transition">
+          <Link to="/gaming/booking" className="btn-primary">🎮 Play Now</Link>
+          <Link to="/movies" className="btn-ghost-neon">🎬 Book Movie</Link>
+          <Link to="/about" className="text-sm text-muted-foreground hover:text-foreground px-4 py-3 transition">
             Explore Zone →
-          </a>
+          </Link>
         </div>
 
         <div className="mt-16 grid grid-cols-2 gap-4 sm:grid-cols-4 max-w-3xl">
           {[
-            { k: "20+", v: "Gaming Rigs" },
-            { k: "50", v: "Cinema Seats" },
-            { k: "149+", v: "Movies" },
-            { k: "₹100", v: "Starts From" },
+            { k: "20+", v: "Gaming Rigs", to: "/gaming/booking" },
+            { k: "50", v: "Cinema Seats", to: "/movies/book-seat" },
+            { k: "149+", v: "Movies", to: "/movies" },
+            { k: "₹100", v: "Starts From", to: "/booking" },
           ].map((s) => (
-            <div key={s.v} className="glass rounded-2xl p-4">
+            <Link key={s.v} to={s.to} className="glass rounded-2xl p-4 hover:glow-purple transition">
               <div className="font-display text-3xl font-black neon-text-gold">{s.k}</div>
               <div className="text-xs uppercase tracking-wider text-muted-foreground mt-1">{s.v}</div>
-            </div>
+            </Link>
           ))}
         </div>
       </div>
@@ -186,14 +296,15 @@ function Marquee() {
 }
 
 function SplitExperience() {
+  const cards = [
+    { img: gamingImg, kicker: "01 — ARENA", title: "Luxury Gaming Zone", desc: "Cutting-edge consoles, racing simulators, VR headsets and ultra-wide gaming PCs in a neon-soaked cathedral.", cta: "Enter Arena", to: "/gaming/booking", glow: "glow-purple" },
+    { img: cinemaImg, kicker: "02 — THEATRE", title: "Mini Cinema Experience", desc: "Recliner seats, Dolby sound, 4K projection and a curated lineup of 149+ films — from blockbusters to anime.", cta: "Book a Seat", to: "/movies/book-seat", glow: "glow-cyan" },
+  ] as const;
   return (
     <section className="mx-auto max-w-7xl px-6 py-24">
       <div className="grid gap-6 md:grid-cols-2">
-        {[
-          { img: gamingImg, kicker: "01 — ARENA", title: "Luxury Gaming Zone", desc: "Cutting-edge consoles, racing simulators, VR headsets and ultra-wide gaming PCs in a neon-soaked cathedral.", cta: "Enter Arena", href: "#gaming", glow: "glow-purple" },
-          { img: cinemaImg, kicker: "02 — THEATRE", title: "Mini Cinema Experience", desc: "Recliner seats, Dolby sound, 4K projection and a curated lineup of 149+ films — from blockbusters to anime.", cta: "Book a Seat", href: "#movies", glow: "glow-cyan" },
-        ].map((c) => (
-          <a key={c.title} href={c.href} className="group relative overflow-hidden rounded-3xl glass">
+        {cards.map((c) => (
+          <Link key={c.title} to={c.to} className="group relative overflow-hidden rounded-3xl glass">
             <div className="relative aspect-[5/4] overflow-hidden">
               <img src={c.img} alt={c.title} width={800} height={600} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-110" />
               <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
@@ -206,19 +317,22 @@ function SplitExperience() {
                 {c.cta} →
               </span>
             </div>
-          </a>
+          </Link>
         ))}
       </div>
     </section>
   );
 }
 
-function SectionHeader({ kicker, title, sub }: { kicker: string; title: string; sub: string }) {
+function SectionHeader({ kicker, title, sub, action }: { kicker: string; title: string; sub: string; action?: { label: string; to: string } }) {
   return (
     <div className="mb-12 flex flex-col items-start gap-3">
       <span className="glass rounded-full px-3 py-1 text-xs uppercase tracking-[0.25em] text-neon-cyan">{kicker}</span>
       <h2 className="font-display text-4xl font-black md:text-6xl">{title}</h2>
       <p className="max-w-2xl text-muted-foreground">{sub}</p>
+      {action && (
+        <Link to={action.to} className="text-sm text-neon-cyan hover:text-foreground transition mt-1">{action.label} →</Link>
+      )}
     </div>
   );
 }
@@ -226,10 +340,10 @@ function SectionHeader({ kicker, title, sub }: { kicker: string; title: string; 
 function Gaming() {
   return (
     <section id="gaming" className="mx-auto max-w-7xl px-6 py-24">
-      <SectionHeader kicker="Gaming Zone" title="Ultimate Gaming Experience" sub="From competitive FPS to chill open-world adventures — pick your title, book a slot, and let the arena handle the rest." />
+      <SectionHeader kicker="Gaming Zone" title="Ultimate Gaming Experience" sub="From competitive FPS to chill open-world adventures — pick your title, book a slot, and let the arena handle the rest." action={{ label: "View all games", to: "/gaming/booking" }} />
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-4">
         {GAMES.map((g) => (
-          <div key={g.name} className="group relative overflow-hidden rounded-2xl glass p-0.5 transition-all hover:-translate-y-1 hover:glow-purple">
+          <Link key={g.name} to="/gaming/booking" className="group relative overflow-hidden rounded-2xl glass p-0.5 transition-all hover:-translate-y-1 hover:glow-purple">
             <div className="relative rounded-[14px] bg-card p-4">
               <div className="relative h-36 rounded-xl overflow-hidden mb-4">
                 <img src={g.img} alt={g.name} width={800} height={600} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
@@ -245,11 +359,11 @@ function Gaming() {
                 <span>•</span>
                 <span>{g.players} players</span>
               </div>
-              <button className="mt-4 w-full rounded-lg bg-gradient-to-r from-neon-purple/20 to-neon-blue/20 border border-neon-purple/40 py-2 text-xs font-semibold uppercase tracking-wider text-neon-cyan transition hover:from-neon-purple hover:to-neon-blue hover:text-foreground">
+              <span className="mt-4 block w-full text-center rounded-lg bg-gradient-to-r from-neon-purple/20 to-neon-blue/20 border border-neon-purple/40 py-2 text-xs font-semibold uppercase tracking-wider text-neon-cyan transition group-hover:from-neon-purple group-hover:to-neon-blue group-hover:text-foreground">
                 Book Slot
-              </button>
+              </span>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
@@ -259,10 +373,10 @@ function Gaming() {
 function Movies() {
   return (
     <section id="movies" className="mx-auto max-w-7xl px-6 py-24">
-      <SectionHeader kicker="Theatre · 50 Seats" title="Now Showing Tonight" sub="A curated lineup of 149+ titles. Pick your seat on our interactive map, add snacks, and walk in with a luxury digital ticket." />
+      <SectionHeader kicker="Theatre · 50 Seats" title="Now Showing Tonight" sub="A curated lineup of 149+ titles. Pick your seat on our interactive map, add snacks, and walk in with a luxury digital ticket." action={{ label: "Browse all movies", to: "/movies" }} />
       <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-6">
         {MOVIES.map((m) => (
-          <div key={m.title} className="group relative overflow-hidden rounded-2xl glass transition hover:-translate-y-1">
+          <Link key={m.title} to="/movies" className="group relative overflow-hidden rounded-2xl glass transition hover:-translate-y-1">
             <div className={`relative aspect-[2/3] bg-gradient-to-br ${m.hue} overflow-hidden`}>
               <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
               <div className="absolute top-2 right-2 glass rounded-md px-2 py-0.5 text-xs text-neon-gold">★ {m.rating}</div>
@@ -272,7 +386,7 @@ function Movies() {
                 <div className="mt-2 text-xs text-muted-foreground">⏰ {m.time}</div>
               </div>
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
@@ -282,8 +396,8 @@ function Movies() {
 function Leaderboard() {
   return (
     <section id="leaderboard" className="mx-auto max-w-7xl px-6 py-24">
-      <SectionHeader kicker="Hall of Fame" title="Weekly Leaderboard" sub="The top warriors of ArenaVerse this week. Climb the ranks, unlock badges, win cash prizes." />
-      <div className="glass overflow-hidden rounded-3xl">
+      <SectionHeader kicker="Hall of Fame" title="Weekly Leaderboard" sub="The top warriors of ArenaVerse this week. Climb the ranks, unlock badges, win cash prizes." action={{ label: "See tournaments", to: "/events/tournaments" }} />
+      <Link to="/events/tournaments" className="block glass overflow-hidden rounded-3xl hover:glow-purple transition">
         <div className="grid grid-cols-12 border-b border-white/5 px-6 py-4 text-xs uppercase tracking-[0.2em] text-muted-foreground">
           <div className="col-span-1">Rank</div>
           <div className="col-span-5">Player</div>
@@ -305,7 +419,7 @@ function Leaderboard() {
             <div className="col-span-3 text-right text-muted-foreground">{l.hours}h</div>
           </div>
         ))}
-      </div>
+      </Link>
     </section>
   );
 }
@@ -313,14 +427,14 @@ function Leaderboard() {
 function Food() {
   return (
     <section id="food" className="mx-auto max-w-7xl px-6 py-24">
-      <SectionHeader kicker="Food Lounge" title="Fuel the Game" sub="Loaded snacks, premium mocktails and gaming energy drinks. Add to any booking in one tap." />
+      <SectionHeader kicker="Food Lounge" title="Fuel the Game" sub="Loaded snacks, premium mocktails and gaming energy drinks. Add to any booking in one tap." action={{ label: "Open full menu", to: "/food" }} />
       <div className="grid grid-cols-2 gap-4 md:grid-cols-3 lg:grid-cols-6">
         {FOOD.map((f) => (
-          <div key={f.name} className="glass rounded-2xl p-5 text-center transition hover:-translate-y-1 hover:glow-purple">
+          <Link key={f.name} to="/food" className="glass rounded-2xl p-5 text-center transition hover:-translate-y-1 hover:glow-purple">
             <div className="text-5xl">{f.emoji}</div>
             <div className="mt-3 font-semibold">{f.name}</div>
             <div className="mt-1 text-sm neon-text-gold font-bold">{f.price}</div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>
@@ -329,9 +443,9 @@ function Food() {
 
 function Membership() {
   const plans = [
-    { name: "Starter", price: "₹0", tag: "Walk-in", perks: ["Pay per use", "Standard pricing", "QR digital pass"], glow: "" },
+    { name: "Starter", price: "₹0", tag: "Walk-in", perks: ["Pay per use", "Standard pricing", "QR digital pass"], glow: "", featured: false },
     { name: "Student Pro", price: "₹499", tag: "/ month", featured: true, perks: ["25% off all bookings", "Priority slots", "Free snack combo weekly", "Tournament entry"], glow: "glow-purple" },
-    { name: "Elite Club", price: "₹1,499", tag: "/ month", perks: ["40% off everything", "Private theatre slot", "Unlimited tournaments", "Concierge support"], glow: "" },
+    { name: "Elite Club", price: "₹1,499", tag: "/ month", perks: ["40% off everything", "Private theatre slot", "Unlimited tournaments", "Concierge support"], glow: "", featured: false },
   ];
   return (
     <section id="membership" className="mx-auto max-w-7xl px-6 py-24">
@@ -356,9 +470,9 @@ function Membership() {
                 </li>
               ))}
             </ul>
-            <button className={`mt-8 w-full ${p.featured ? "btn-primary" : "btn-ghost-neon"}`}>
+            <Link to="/auth/signup" className={`mt-8 w-full inline-block text-center ${p.featured ? "btn-primary" : "btn-ghost-neon"}`}>
               {p.featured ? "Get Pro" : "Choose Plan"}
-            </button>
+            </Link>
           </div>
         ))}
       </div>
@@ -380,8 +494,15 @@ function Footer() {
               United University Campus, Rawatpur, Prayagraj. Open daily 10am — 1am.
             </p>
             <div className="mt-8 flex flex-wrap justify-center gap-4">
-              <button className="btn-primary">Book Your Experience</button>
-              <button className="btn-ghost-neon">Get Directions</button>
+              <Link to="/booking" className="btn-primary">Book Your Experience</Link>
+              <a
+                href="https://maps.google.com/?q=United+University+Rawatpur+Prayagraj"
+                target="_blank"
+                rel="noreferrer"
+                className="btn-ghost-neon"
+              >
+                Get Directions
+              </a>
             </div>
           </div>
         </div>
@@ -393,12 +514,12 @@ function Footer() {
             <span className="opacity-60">© 2026</span>
           </div>
           <div className="text-xs uppercase tracking-[0.25em]">
-            Founded by <span className="neon-text-gold font-bold">Ammar Ansari</span>
+            Founded by <span className="neon-text-gold font-bold">Ammar Ansari</span> · <a href="tel:9120106944" className="text-neon-cyan hover:underline normal-case tracking-normal">+91 91201 06944</a>
           </div>
           <div className="flex gap-6">
-            <a href="#" className="hover:text-neon-cyan transition">Privacy</a>
-            <a href="#" className="hover:text-neon-cyan transition">Terms</a>
-            <a href="#support" className="hover:text-neon-cyan transition">Support</a>
+            <Link to="/about" className="hover:text-neon-cyan transition">About</Link>
+            <Link to="/support" className="hover:text-neon-cyan transition">Support</Link>
+            <Link to="/profile" className="hover:text-neon-cyan transition">Profile</Link>
           </div>
         </div>
       </div>
