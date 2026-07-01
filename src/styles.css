@@ -92,6 +92,29 @@
   --glass-border: oklch(1 0 0 / 0.08);
 }
 
+.light {
+  --background: oklch(0.97 0.01 285);
+  --foreground: oklch(0.15 0.03 285);
+  --card: oklch(1 0 0);
+  --card-foreground: oklch(0.15 0.03 285);
+  --popover: oklch(1 0 0);
+  --popover-foreground: oklch(0.15 0.03 285);
+  --secondary: oklch(0.94 0.02 285);
+  --secondary-foreground: oklch(0.15 0.03 285);
+  --muted: oklch(0.94 0.02 285);
+  --muted-foreground: oklch(0.45 0.03 285);
+  --border: oklch(0.15 0.05 285 / 15%);
+  --input: oklch(0.92 0.02 285);
+  --glass-bg: oklch(1 0 0 / 0.65);
+  --glass-border: oklch(0.15 0.05 285 / 10%);
+  --shadow-glass: 0 8px 32px oklch(0.15 0.05 285 / 0.12), inset 0 1px 0 oklch(1 0 0 / 0.5);
+}
+.light body {
+  background-image:
+    radial-gradient(ellipse 80% 50% at 50% -20%, oklch(0.62 0.28 305 / 0.12), transparent),
+    radial-gradient(ellipse 60% 50% at 80% 50%, oklch(0.82 0.18 200 / 0.10), transparent);
+}
+
 @layer base {
   * {
     border-color: var(--color-border);

@@ -94,34 +94,46 @@ function BookSeat() {
               </div>
             </div>
 
-            <div className="mt-4 overflow-auto">
+            <div className="mt-4 overflow-auto" role="grid" aria-label="Cinema seat map">
               <div className="mx-auto inline-block origin-top transition-transform" style={{ transform: `scale(${zoom})` }}>
                 {ROWS.map(r => (
-                  <div key={r} className="flex items-center gap-1.5 mb-1.5">
-                    <span className="w-6 text-center text-[10px] text-muted-foreground">{r}</span>
+                  <div key={r} className="flex items-center gap-1.5 mb-1.5" role="row">
+                    <span className="w-6 text-center text-[10px] text-muted-foreground font-bold">{r}</span>
                     {COLS.map(c => {
                       const id = `${r}${c}`;
                       const isOcc = occupied.includes(id);
                       const isSel = selected.includes(id);
                       const prem = isPremium(id);
+                      const tierLabel = prem ? "Premium recliner" : tier(r);
+                      const cost = prem ? 360 : price(r);
                       return (
                         <button
                           key={id}
                           disabled={isOcc}
+                          role="gridcell"
+                          aria-label={`Seat ${id}, ${tierLabel}, ₹${cost}, ${isOcc ? "booked" : isSel ? "selected" : "available"}`}
+                          aria-pressed={isSel}
                           onMouseEnter={() => setHover(id)}
                           onMouseLeave={() => setHover(null)}
+                          onFocus={() => setHover(id)}
+                          onKeyDown={(e) => {
+                            if (e.key === "Enter" || e.key === " ") { e.preventDefault(); if (!isOcc) arena.toggleSeat(id); }
+                          }}
                           onClick={() => arena.toggleSeat(id)}
-                          title={`${id} · ${tier(r)} · ₹${prem?360:price(r)}`}
-                          className={`h-7 w-7 rounded-md text-[10px] font-bold transition ${
-                            isOcc ? "bg-muted text-muted-foreground cursor-not-allowed" :
+                          title={`${id} · ${tierLabel} · ₹${cost}`}
+                          className={`h-8 w-8 rounded-md text-[10px] font-bold transition focus:outline-none focus:ring-2 focus:ring-neon-cyan ${
+                            isOcc ? "bg-muted text-muted-foreground cursor-not-allowed line-through" :
                             isSel ? "bg-neon-purple text-foreground glow-purple scale-110" :
-                            prem ? "bg-neon-gold/30 text-neon-gold hover:bg-neon-gold/50" :
+                            prem ? "bg-neon-gold/30 text-neon-gold hover:bg-neon-gold/50 ring-1 ring-neon-gold/40" :
                             r <= "B" ? "bg-neon-purple/15 hover:bg-neon-purple/40" :
                             r <= "D" ? "bg-neon-cyan/10 hover:bg-neon-cyan/30" :
                             "bg-secondary hover:bg-neon-blue/30"
                           }`}>{c}</button>
                       );
                     })}
+                    <span className="ml-3 text-[10px] uppercase tracking-widest text-muted-foreground">
+                      {r === "A" ? "Premium" : r <= "B" ? "Front" : r <= "D" ? "Standard" : "Economy"}
+                    </span>
                   </div>
                 ))}
               </div>
