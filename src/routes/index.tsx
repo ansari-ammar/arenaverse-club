@@ -11,6 +11,12 @@ import tekkenImg from "@/assets/games/tekken.jpg";
 import minecraftImg from "@/assets/games/minecraft.jpg";
 import pubgImg from "@/assets/games/pubg.jpg";
 import nfsImg from "@/assets/games/nfs.jpg";
+import inceptionImg from "@/assets/movies/inception.jpg";
+import interstellarImg from "@/assets/movies/interstellar.jpg";
+import duneImg from "@/assets/movies/dune.jpg";
+import avengersImg from "@/assets/movies/avengers.jpg";
+import johnwickImg from "@/assets/movies/johnwick.jpg";
+import spidermanImg from "@/assets/movies/spiderman.jpg";
 import { arena, useArena } from "@/lib/arena-store";
 
 export const Route = createFileRoute("/")({
