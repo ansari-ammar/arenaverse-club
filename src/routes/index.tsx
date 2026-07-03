@@ -163,7 +163,15 @@ function Nav({ onMenu }: { onMenu: () => void }) {
             <Link key={n.label} to={n.to} className="hover:text-neon-cyan transition-colors">{n.label}</Link>
           ))}
         </nav>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <button
+            onClick={toggle}
+            aria-label="Toggle theme"
+            title={theme === "dark" ? "Switch to light" : "Switch to dark"}
+            className="grid h-9 w-9 place-items-center rounded-xl glass text-sm hover:glow-purple transition"
+          >
+            {theme === "dark" ? "☀️" : "🌙"}
+          </button>
           {user ? (
             <>
               <Link to="/profile" className="hidden sm:inline text-sm text-muted-foreground hover:text-foreground transition">
