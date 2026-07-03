@@ -118,8 +118,26 @@ function ArenaVerse() {
   );
 }
 
+function useHomeTheme() {
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  useEffect(() => {
+    const saved = (typeof window !== "undefined" && localStorage.getItem("arena_theme")) as "dark" | "light" | null;
+    const t = saved ?? "dark";
+    setTheme(t);
+    document.documentElement.classList.toggle("light", t === "light");
+  }, []);
+  const toggle = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    document.documentElement.classList.toggle("light", next === "light");
+    localStorage.setItem("arena_theme", next);
+  };
+  return { theme, toggle };
+}
+
 function Nav({ onMenu }: { onMenu: () => void }) {
   const user = useArena((s) => s.user);
+  const { theme, toggle } = useHomeTheme();
   return (
     <header className="sticky top-0 z-50 glass border-b border-white/5">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4">
