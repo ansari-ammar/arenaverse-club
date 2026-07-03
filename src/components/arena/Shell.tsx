@@ -6,6 +6,7 @@ const MENU: { label: string; to: string; icon: string }[] = [
   { label: "Home", to: "/", icon: "🏠" },
   { label: "Gaming", to: "/gaming/booking", icon: "🎮" },
   { label: "Movies", to: "/movies", icon: "🎬" },
+  { label: "Play Online", to: "/play-online", icon: "🕹️" },
   { label: "Book Experience", to: "/booking", icon: "🎟️" },
   { label: "Food Lounge", to: "/food", icon: "🍿" },
   { label: "Tournaments", to: "/events/tournaments", icon: "🏆" },
