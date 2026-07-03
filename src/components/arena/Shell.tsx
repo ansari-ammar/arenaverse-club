@@ -159,14 +159,14 @@ export function ArenaShell({ children, title }: { children: ReactNode; title?: s
       )}
 
       {title && (
-        <div className="mx-auto max-w-7xl px-6 pt-10">
-          <h1 className="font-display text-4xl font-black neon-text">{title}</h1>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-10">
+          <h1 className="font-display text-3xl sm:text-4xl font-black neon-text">{title}</h1>
         </div>
       )}
-      <main className="mx-auto max-w-7xl px-6 py-10">{children}</main>
+      <main className="mx-auto max-w-7xl px-4 sm:px-6 py-10">{children}</main>
 
       <footer className="border-t border-border mt-16">
-        <div className="mx-auto max-w-7xl px-6 py-8 flex flex-wrap items-center justify-between gap-4 text-xs text-muted-foreground">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 flex flex-wrap items-center justify-between gap-4 text-xs text-muted-foreground">
           <div>
             © {new Date().getFullYear()} ArenaVerse · United University, Rawatpur, Prayagraj
           </div>
