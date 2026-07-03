@@ -11,6 +11,12 @@ import tekkenImg from "@/assets/games/tekken.jpg";
 import minecraftImg from "@/assets/games/minecraft.jpg";
 import pubgImg from "@/assets/games/pubg.jpg";
 import nfsImg from "@/assets/games/nfs.jpg";
+import inceptionImg from "@/assets/movies/inception.jpg";
+import interstellarImg from "@/assets/movies/interstellar.jpg";
+import duneImg from "@/assets/movies/dune.jpg";
+import avengersImg from "@/assets/movies/avengers.jpg";
+import johnwickImg from "@/assets/movies/johnwick.jpg";
+import spidermanImg from "@/assets/movies/spiderman.jpg";
 import { arena, useArena } from "@/lib/arena-store";
 
 export const Route = createFileRoute("/")({
@@ -55,12 +61,12 @@ const GAMES = [
 ];
 
 const MOVIES = [
-  { title: "Dune: Part Three", genre: "Sci-Fi", time: "7:30 PM", rating: "9.1", hue: "from-amber-600 to-orange-700" },
-  { title: "Spider-Verse", genre: "Animation", time: "5:00 PM", rating: "9.4", hue: "from-pink-500 to-red-600" },
-  { title: "Oppenheimer", genre: "Drama", time: "9:00 PM", rating: "8.8", hue: "from-orange-600 to-red-800" },
-  { title: "John Wick 5", genre: "Action", time: "10:30 PM", rating: "8.6", hue: "from-zinc-700 to-zinc-900" },
-  { title: "Demon Slayer", genre: "Anime", time: "3:00 PM", rating: "9.2", hue: "from-red-500 to-purple-700" },
-  { title: "Interstellar", genre: "Sci-Fi", time: "8:00 PM", rating: "9.0", hue: "from-blue-700 to-indigo-900" },
+  { title: "Dune: Part Two",    genre: "Sci-Fi",    duration: "2h 46m", time: "7:30 PM",  rating: "8.6", img: duneImg,         trailer: "Way9Dexny3w", category: "Hollywood" },
+  { title: "Spider-Verse",      genre: "Animation", duration: "2h 20m", time: "5:00 PM",  rating: "8.6", img: spidermanImg,    trailer: "cqGjhVJWtEg", category: "Trending" },
+  { title: "Interstellar",      genre: "Sci-Fi",    duration: "2h 49m", time: "8:00 PM",  rating: "8.7", img: interstellarImg, trailer: "zSWdZVtXT7E", category: "Sci-Fi" },
+  { title: "Inception",         genre: "Thriller",  duration: "2h 28m", time: "9:00 PM",  rating: "8.8", img: inceptionImg,    trailer: "YoHD9XEInc0", category: "Thriller" },
+  { title: "Avengers: Endgame", genre: "Action",    duration: "3h 01m", time: "6:15 PM",  rating: "8.4", img: avengersImg,     trailer: "TcMBFSGVi1c", category: "Action" },
+  { title: "John Wick 4",       genre: "Action",    duration: "2h 49m", time: "10:30 PM", rating: "7.7", img: johnwickImg,     trailer: "qEVUtrk8_B4", category: "Action" },
 ];
 
 const LEADERS = [
@@ -398,24 +404,57 @@ function Gaming() {
 }
 
 function Movies() {
+  const [trailer, setTrailer] = useState<{ title: string; id: string } | null>(null);
+  const CATS = ["Hollywood", "Action", "Adventure", "Sci-Fi", "Comedy", "Thriller", "Horror", "Anime", "Trending", "Upcoming"];
   return (
     <section id="movies" className="mx-auto max-w-7xl px-6 py-24">
-      <SectionHeader kicker="Theatre · 50 Seats" title="Now Showing Tonight" sub="A curated lineup of 149+ titles. Pick your seat on our interactive map, add snacks, and walk in with a luxury digital ticket." action={{ label: "Browse all movies", to: "/movies" }} />
-      <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-6">
-        {MOVIES.map((m) => (
-          <Link key={m.title} to="/movies" className="group relative overflow-hidden rounded-2xl glass transition hover:-translate-y-1">
-            <div className={`relative aspect-[2/3] bg-gradient-to-br ${m.hue} overflow-hidden`}>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute top-2 right-2 glass rounded-md px-2 py-0.5 text-xs text-neon-gold">★ {m.rating}</div>
-              <div className="absolute inset-x-0 bottom-0 p-3">
-                <div className="text-xs uppercase tracking-wider text-neon-cyan">{m.genre}</div>
-                <h3 className="font-display text-sm font-bold leading-tight mt-1">{m.title}</h3>
-                <div className="mt-2 text-xs text-muted-foreground">⏰ {m.time}</div>
-              </div>
-            </div>
-          </Link>
+      <SectionHeader kicker="Theatre · 50 Seats" title="Now Showing Tonight" sub="A curated lineup of 149+ titles. Pick your seat, add snacks, and walk in with a luxury digital ticket." action={{ label: "Browse all movies", to: "/movies" }} />
+      <div className="mb-8 flex flex-wrap gap-2">
+        {CATS.map((c) => (
+          <Link key={c} to="/movies" className="rounded-full border border-border px-3 py-1 text-[11px] uppercase tracking-wider text-muted-foreground hover:border-neon-cyan/60 hover:text-neon-cyan transition">{c}</Link>
         ))}
       </div>
+      <div className="grid grid-cols-2 gap-5 md:grid-cols-3 lg:grid-cols-3">
+        {MOVIES.map((m) => (
+          <div key={m.title} className="group relative overflow-hidden rounded-2xl glass transition hover:-translate-y-1 hover:glow-purple">
+            <div className="relative aspect-[2/3] overflow-hidden">
+              <img src={m.img} alt={m.title} loading="lazy" className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-110" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+              <div className="absolute top-2 right-2 glass rounded-md px-2 py-0.5 text-xs text-neon-gold">★ {m.rating}</div>
+              <div className="absolute top-2 left-2 glass rounded-md px-2 py-0.5 text-[10px] uppercase tracking-wider text-neon-cyan">{m.category}</div>
+              <div className="absolute inset-x-0 bottom-0 p-4">
+                <div className="text-[10px] uppercase tracking-wider text-neon-cyan">{m.genre} · {m.duration}</div>
+                <h3 className="font-display text-lg font-black leading-tight mt-1">{m.title}</h3>
+                <div className="mt-1 text-xs text-muted-foreground">⏰ {m.time}</div>
+                <div className="mt-3 grid grid-cols-2 gap-2">
+                  <button onClick={() => setTrailer({ title: m.title, id: m.trailer })} className="rounded-lg border border-neon-cyan/50 px-2 py-1.5 text-[10px] font-bold uppercase tracking-wider text-neon-cyan hover:bg-neon-cyan/20">▶ Trailer</button>
+                  <Link to="/movies/book-seat" className="rounded-lg bg-gradient-to-r from-neon-purple to-neon-blue px-2 py-1.5 text-[10px] font-bold uppercase tracking-wider text-center glow-purple">Book</Link>
+                </div>
+              </div>
+            </div>
+          </div>
+        ))}
+      </div>
+      {trailer && (
+        <div className="fixed inset-0 z-[70] grid place-items-center p-4">
+          <button aria-label="Close" onClick={() => setTrailer(null)} className="absolute inset-0 bg-black/90 backdrop-blur-sm" />
+          <div className="relative w-full max-w-3xl glass rounded-2xl p-4">
+            <div className="flex items-center justify-between mb-3">
+              <h3 className="font-display font-black">{trailer.title} — Trailer</h3>
+              <button onClick={() => setTrailer(null)} className="h-8 w-8 rounded-full glass" aria-label="Close">✕</button>
+            </div>
+            <div className="aspect-video w-full overflow-hidden rounded-xl bg-black">
+              <iframe
+                src={`https://www.youtube.com/embed/${trailer.id}?autoplay=1`}
+                title={trailer.title}
+                allow="autoplay; encrypted-media; picture-in-picture"
+                allowFullScreen
+                className="h-full w-full"
+              />
+            </div>
+          </div>
+        </div>
+      )}
     </section>
   );
 }
