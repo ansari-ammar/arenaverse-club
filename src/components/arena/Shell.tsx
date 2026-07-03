@@ -70,9 +70,10 @@ export function ArenaShell({ children, title }: { children: ReactNode; title?: s
               <span className="font-display text-lg font-black tracking-wider neon-text">ARENAVERSE</span>
             </Link>
           </div>
-          <nav className="hidden md:flex items-center gap-5 text-sm text-muted-foreground">
+          <nav className="hidden lg:flex items-center gap-5 text-sm text-muted-foreground">
             <Link to="/movies" className="hover:text-foreground">Movies</Link>
             <Link to="/gaming/booking" className="hover:text-foreground">Gaming</Link>
+            <Link to="/play-online" className="hover:text-foreground">Play Online</Link>
             <Link to="/events/tournaments" className="hover:text-foreground">Tournaments</Link>
             <Link to="/food" className="hover:text-foreground">Food</Link>
             <Link to="/pass" className="hover:text-foreground">My Pass</Link>
