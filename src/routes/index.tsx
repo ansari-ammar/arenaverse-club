@@ -61,12 +61,12 @@ const GAMES = [
 ];
 
 const MOVIES = [
-  { title: "Dune: Part Three", genre: "Sci-Fi", time: "7:30 PM", rating: "9.1", hue: "from-amber-600 to-orange-700" },
-  { title: "Spider-Verse", genre: "Animation", time: "5:00 PM", rating: "9.4", hue: "from-pink-500 to-red-600" },
-  { title: "Oppenheimer", genre: "Drama", time: "9:00 PM", rating: "8.8", hue: "from-orange-600 to-red-800" },
-  { title: "John Wick 5", genre: "Action", time: "10:30 PM", rating: "8.6", hue: "from-zinc-700 to-zinc-900" },
-  { title: "Demon Slayer", genre: "Anime", time: "3:00 PM", rating: "9.2", hue: "from-red-500 to-purple-700" },
-  { title: "Interstellar", genre: "Sci-Fi", time: "8:00 PM", rating: "9.0", hue: "from-blue-700 to-indigo-900" },
+  { title: "Dune: Part Two",    genre: "Sci-Fi",    duration: "2h 46m", time: "7:30 PM",  rating: "8.6", img: duneImg,         trailer: "Way9Dexny3w", category: "Hollywood" },
+  { title: "Spider-Verse",      genre: "Animation", duration: "2h 20m", time: "5:00 PM",  rating: "8.6", img: spidermanImg,    trailer: "cqGjhVJWtEg", category: "Trending" },
+  { title: "Interstellar",      genre: "Sci-Fi",    duration: "2h 49m", time: "8:00 PM",  rating: "8.7", img: interstellarImg, trailer: "zSWdZVtXT7E", category: "Sci-Fi" },
+  { title: "Inception",         genre: "Thriller",  duration: "2h 28m", time: "9:00 PM",  rating: "8.8", img: inceptionImg,    trailer: "YoHD9XEInc0", category: "Thriller" },
+  { title: "Avengers: Endgame", genre: "Action",    duration: "3h 01m", time: "6:15 PM",  rating: "8.4", img: avengersImg,     trailer: "TcMBFSGVi1c", category: "Action" },
+  { title: "John Wick 4",       genre: "Action",    duration: "2h 49m", time: "10:30 PM", rating: "7.7", img: johnwickImg,     trailer: "qEVUtrk8_B4", category: "Action" },
 ];
 
 const LEADERS = [
