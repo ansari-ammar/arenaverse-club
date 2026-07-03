@@ -6,6 +6,7 @@ const MENU: { label: string; to: string; icon: string }[] = [
   { label: "Home", to: "/", icon: "🏠" },
   { label: "Gaming", to: "/gaming/booking", icon: "🎮" },
   { label: "Movies", to: "/movies", icon: "🎬" },
+  { label: "Play Online", to: "/play-online", icon: "🕹️" },
   { label: "Book Experience", to: "/booking", icon: "🎟️" },
   { label: "Food Lounge", to: "/food", icon: "🍿" },
   { label: "Tournaments", to: "/events/tournaments", icon: "🏆" },
@@ -69,9 +70,10 @@ export function ArenaShell({ children, title }: { children: ReactNode; title?: s
               <span className="font-display text-lg font-black tracking-wider neon-text">ARENAVERSE</span>
             </Link>
           </div>
-          <nav className="hidden md:flex items-center gap-5 text-sm text-muted-foreground">
+          <nav className="hidden lg:flex items-center gap-5 text-sm text-muted-foreground">
             <Link to="/movies" className="hover:text-foreground">Movies</Link>
             <Link to="/gaming/booking" className="hover:text-foreground">Gaming</Link>
+            <Link to="/play-online" className="hover:text-foreground">Play Online</Link>
             <Link to="/events/tournaments" className="hover:text-foreground">Tournaments</Link>
             <Link to="/food" className="hover:text-foreground">Food</Link>
             <Link to="/pass" className="hover:text-foreground">My Pass</Link>
@@ -157,14 +159,14 @@ export function ArenaShell({ children, title }: { children: ReactNode; title?: s
       )}
 
       {title && (
-        <div className="mx-auto max-w-7xl px-6 pt-10">
-          <h1 className="font-display text-4xl font-black neon-text">{title}</h1>
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 pt-10">
+          <h1 className="font-display text-3xl sm:text-4xl font-black neon-text">{title}</h1>
         </div>
       )}
-      <main className="mx-auto max-w-7xl px-6 py-10">{children}</main>
+      <main className="mx-auto max-w-7xl px-4 sm:px-6 py-10">{children}</main>
 
       <footer className="border-t border-border mt-16">
-        <div className="mx-auto max-w-7xl px-6 py-8 flex flex-wrap items-center justify-between gap-4 text-xs text-muted-foreground">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 py-8 flex flex-wrap items-center justify-between gap-4 text-xs text-muted-foreground">
           <div>
             © {new Date().getFullYear()} ArenaVerse · United University, Rawatpur, Prayagraj
           </div>

@@ -12,6 +12,7 @@ import { Route as rootRouteImport } from './routes/__root'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as ReceiptRouteImport } from './routes/receipt'
 import { Route as ProfileRouteImport } from './routes/profile'
+import { Route as PlayOnlineRouteImport } from './routes/play-online'
 import { Route as PaymentRouteImport } from './routes/payment'
 import { Route as PassRouteImport } from './routes/pass'
 import { Route as MoviesRouteImport } from './routes/movies'
@@ -48,6 +49,11 @@ const ReceiptRoute = ReceiptRouteImport.update({
 const ProfileRoute = ProfileRouteImport.update({
   id: '/profile',
   path: '/profile',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const PlayOnlineRoute = PlayOnlineRouteImport.update({
+  id: '/play-online',
+  path: '/play-online',
   getParentRoute: () => rootRouteImport,
 } as any)
 const PaymentRoute = PaymentRouteImport.update({
@@ -170,6 +176,7 @@ export interface FileRoutesByFullPath {
   '/movies': typeof MoviesRouteWithChildren
   '/pass': typeof PassRoute
   '/payment': typeof PaymentRoute
+  '/play-online': typeof PlayOnlineRoute
   '/profile': typeof ProfileRoute
   '/receipt': typeof ReceiptRoute
   '/support': typeof SupportRoute
@@ -197,6 +204,7 @@ export interface FileRoutesByTo {
   '/movies': typeof MoviesRouteWithChildren
   '/pass': typeof PassRoute
   '/payment': typeof PaymentRoute
+  '/play-online': typeof PlayOnlineRoute
   '/profile': typeof ProfileRoute
   '/receipt': typeof ReceiptRoute
   '/support': typeof SupportRoute
@@ -225,6 +233,7 @@ export interface FileRoutesById {
   '/movies': typeof MoviesRouteWithChildren
   '/pass': typeof PassRoute
   '/payment': typeof PaymentRoute
+  '/play-online': typeof PlayOnlineRoute
   '/profile': typeof ProfileRoute
   '/receipt': typeof ReceiptRoute
   '/support': typeof SupportRoute
@@ -254,6 +263,7 @@ export interface FileRouteTypes {
     | '/movies'
     | '/pass'
     | '/payment'
+    | '/play-online'
     | '/profile'
     | '/receipt'
     | '/support'
@@ -281,6 +291,7 @@ export interface FileRouteTypes {
     | '/movies'
     | '/pass'
     | '/payment'
+    | '/play-online'
     | '/profile'
     | '/receipt'
     | '/support'
@@ -308,6 +319,7 @@ export interface FileRouteTypes {
     | '/movies'
     | '/pass'
     | '/payment'
+    | '/play-online'
     | '/profile'
     | '/receipt'
     | '/support'
@@ -336,6 +348,7 @@ export interface RootRouteChildren {
   MoviesRoute: typeof MoviesRouteWithChildren
   PassRoute: typeof PassRoute
   PaymentRoute: typeof PaymentRoute
+  PlayOnlineRoute: typeof PlayOnlineRoute
   ProfileRoute: typeof ProfileRoute
   ReceiptRoute: typeof ReceiptRoute
   SupportRoute: typeof SupportRoute
@@ -373,6 +386,13 @@ declare module '@tanstack/react-router' {
       path: '/profile'
       fullPath: '/profile'
       preLoaderRoute: typeof ProfileRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/play-online': {
+      id: '/play-online'
+      path: '/play-online'
+      fullPath: '/play-online'
+      preLoaderRoute: typeof PlayOnlineRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/payment': {
@@ -556,6 +576,7 @@ const rootRouteChildren: RootRouteChildren = {
   MoviesRoute: MoviesRouteWithChildren,
   PassRoute: PassRoute,
   PaymentRoute: PaymentRoute,
+  PlayOnlineRoute: PlayOnlineRoute,
   ProfileRoute: ProfileRoute,
   ReceiptRoute: ReceiptRoute,
   SupportRoute: SupportRoute,

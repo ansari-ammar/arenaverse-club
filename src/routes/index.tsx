@@ -22,9 +22,9 @@ const NAV: { label: string; to: string }[] = [
   { label: "Home", to: "/" },
   { label: "Gaming", to: "/gaming/booking" },
   { label: "Movies", to: "/movies" },
-  { label: "Leaderboard", to: "/events/tournaments" },
-  { label: "Food", to: "/food" },
+  { label: "Play Online", to: "/play-online" },
   { label: "Tournaments", to: "/events/tournaments" },
+  { label: "Food", to: "/food" },
   { label: "Support", to: "/support" },
   { label: "About", to: "/about" },
 ];
@@ -33,6 +33,7 @@ const DRAWER: { label: string; to: string; icon: string }[] = [
   { label: "Home", to: "/", icon: "🏠" },
   { label: "Gaming", to: "/gaming/booking", icon: "🎮" },
   { label: "Movies", to: "/movies", icon: "🎬" },
+  { label: "Play Online", to: "/play-online", icon: "🕹️" },
   { label: "Book Experience", to: "/booking", icon: "🎟️" },
   { label: "Food Lounge", to: "/food", icon: "🍿" },
   { label: "Tournaments", to: "/events/tournaments", icon: "🏆" },
@@ -117,8 +118,26 @@ function ArenaVerse() {
   );
 }
 
+function useHomeTheme() {
+  const [theme, setTheme] = useState<"dark" | "light">("dark");
+  useEffect(() => {
+    const saved = (typeof window !== "undefined" && localStorage.getItem("arena_theme")) as "dark" | "light" | null;
+    const t = saved ?? "dark";
+    setTheme(t);
+    document.documentElement.classList.toggle("light", t === "light");
+  }, []);
+  const toggle = () => {
+    const next = theme === "dark" ? "light" : "dark";
+    setTheme(next);
+    document.documentElement.classList.toggle("light", next === "light");
+    localStorage.setItem("arena_theme", next);
+  };
+  return { theme, toggle };
+}
+
 function Nav({ onMenu }: { onMenu: () => void }) {
   const user = useArena((s) => s.user);
+  const { theme, toggle } = useHomeTheme();
   return (
     <header className="sticky top-0 z-50 glass border-b border-white/5">
       <div className="mx-auto flex max-w-7xl items-center justify-between gap-6 px-6 py-4">
@@ -144,7 +163,15 @@ function Nav({ onMenu }: { onMenu: () => void }) {
             <Link key={n.label} to={n.to} className="hover:text-neon-cyan transition-colors">{n.label}</Link>
           ))}
         </nav>
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 sm:gap-3">
+          <button
+            onClick={toggle}
+            aria-label="Toggle theme"
+            title={theme === "dark" ? "Switch to light" : "Switch to dark"}
+            className="grid h-9 w-9 place-items-center rounded-xl glass text-sm hover:glow-purple transition"
+          >
+            {theme === "dark" ? "☀️" : "🌙"}
+          </button>
           {user ? (
             <>
               <Link to="/profile" className="hidden sm:inline text-sm text-muted-foreground hover:text-foreground transition">
