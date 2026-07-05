@@ -26,7 +26,7 @@ export type Movie = {
   language: string;
   year: number;
   seatsLeft: number;
-  trailer: string; // youtube id
+  trailer: string;
   section: ("featured" | "now" | "top" | "recommended" | "upcoming")[];
   synopsis: string;
 };
@@ -44,15 +44,42 @@ export const MOVIES: Movie[] = [
   { id: "trending-thriller", title: "Midnight Protocol", img: cod, backdrop: cod, duration: "2h 12m", price: 190, rating: 8.1, category: "Trending", language: "English", year: 2025, seatsLeft: 47, trailer: "M7lc1UVf-VE", section: ["upcoming", "recommended"], synopsis: "A hacker stumbles upon a conspiracy that puts every connected device on the planet at risk." },
 ];
 
-export const GAMES = [
-  { id: "fifa", title: "FIFA 25", img: fifa, console: "PS5" },
-  { id: "cod", title: "Call of Duty MW3", img: cod, console: "PS5" },
-  { id: "gta", title: "GTA V", img: gta, console: "PS5" },
-  { id: "valorant", title: "Valorant", img: valorant, console: "PC" },
-  { id: "tekken", title: "Tekken 8", img: tekken, console: "PS5" },
-  { id: "minecraft", title: "Minecraft", img: minecraft, console: "PC" },
-  { id: "pubg", title: "PUBG", img: pubg, console: "PC" },
-  { id: "nfs", title: "Need for Speed", img: nfs, console: "PS5" },
+export type Game = {
+  id: string;
+  title: string;
+  img?: string;
+  emoji: string;
+  hue: string;
+  console: "PS5" | "Xbox" | "PC" | "VR" | "Racing Sim";
+  genre: string;
+  rating: number;
+  price: number;
+  trailer: string;
+  comingSoon?: boolean;
+  releaseDate?: string;
+};
+
+export const GAMES: Game[] = [
+  { id: "gta6", title: "GTA VI", emoji: "🌴", hue: "from-pink-500 to-rose-900", console: "PS5", genre: "Open World", rating: 0, price: 0, trailer: "QdBZY2fkU-0", comingSoon: true, releaseDate: "2026-05-26" },
+  { id: "fifa", title: "EA FC 25", img: fifa, emoji: "⚽", hue: "from-green-500 to-emerald-900", console: "PS5", genre: "Sports", rating: 8.2, price: 100, trailer: "o-elC-EMS4Y" },
+  { id: "cod", title: "Call of Duty MW3", img: cod, emoji: "🔫", hue: "from-orange-600 to-red-900", console: "PS5", genre: "FPS", rating: 8.0, price: 120, trailer: "eOKf8Aajers" },
+  { id: "gta", title: "GTA V", img: gta, emoji: "🏙️", hue: "from-yellow-500 to-orange-800", console: "PS5", genre: "Open World", rating: 9.4, price: 100, trailer: "QkkoHAzjnUs" },
+  { id: "valorant", title: "Valorant", img: valorant, emoji: "🎯", hue: "from-red-600 to-fuchsia-900", console: "PC", genre: "FPS", rating: 8.5, price: 80, trailer: "e_E9W2vsRbQ" },
+  { id: "tekken", title: "Tekken 8", img: tekken, emoji: "🥋", hue: "from-slate-700 to-black", console: "PS5", genre: "Fighting", rating: 8.6, price: 120, trailer: "GtF5AzWq3Zw" },
+  { id: "minecraft", title: "Minecraft", img: minecraft, emoji: "🧱", hue: "from-lime-600 to-green-900", console: "PC", genre: "Sandbox", rating: 9.2, price: 80, trailer: "MmB9b5njVbA" },
+  { id: "pubg", title: "PUBG", img: pubg, emoji: "🪂", hue: "from-yellow-600 to-amber-900", console: "PC", genre: "Battle Royale", rating: 7.9, price: 80, trailer: "P44EOeAY55w" },
+  { id: "nfs", title: "Need For Speed", img: nfs, emoji: "🏎️", hue: "from-red-500 to-orange-800", console: "Racing Sim", genre: "Racing", rating: 8.1, price: 140, trailer: "AKvvpZUdVHc" },
+  { id: "wwe", title: "WWE 2K24", emoji: "🤼", hue: "from-red-700 to-yellow-800", console: "PS5", genre: "Sports", rating: 8.3, price: 120, trailer: "GKk3nEt4X68" },
+  { id: "fortnite", title: "Fortnite", emoji: "🌈", hue: "from-fuchsia-500 to-purple-900", console: "PC", genre: "Battle Royale", rating: 8.4, price: 80, trailer: "2gUtfBmw86Y" },
+  { id: "rocketleague", title: "Rocket League", emoji: "🚗", hue: "from-blue-600 to-orange-700", console: "PS5", genre: "Sports", rating: 8.7, price: 100, trailer: "yyc57ilNKuc" },
+  { id: "mk", title: "Mortal Kombat 1", emoji: "🐉", hue: "from-red-900 to-black", console: "PS5", genre: "Fighting", rating: 8.2, price: 120, trailer: "6iy8jVFujmk" },
+  { id: "rdr2", title: "Red Dead Redemption 2", emoji: "🤠", hue: "from-amber-800 to-stone-900", console: "PS5", genre: "Open World", rating: 9.6, price: 120, trailer: "gmA6MrX81z4" },
+  { id: "ac", title: "Assassin's Creed Shadows", emoji: "🥷", hue: "from-slate-800 to-red-900", console: "PS5", genre: "Action RPG", rating: 8.4, price: 120, trailer: "PWJRW03Xn78" },
+  { id: "forza", title: "Forza Horizon 5", emoji: "🏁", hue: "from-cyan-600 to-blue-900", console: "Xbox", genre: "Racing", rating: 9.0, price: 140, trailer: "FYH9n37B7Yw" },
+  { id: "spiderman-g", title: "Spider-Man 2", emoji: "🕷️", hue: "from-red-600 to-blue-900", console: "PS5", genre: "Action", rating: 9.1, price: 120, trailer: "qAcLxCTB_hs" },
+  { id: "gow", title: "God of War Ragnarök", emoji: "🪓", hue: "from-blue-900 to-slate-900", console: "PS5", genre: "Action RPG", rating: 9.4, price: 120, trailer: "EE-4GvjKcfs" },
+  { id: "elden", title: "Elden Ring", emoji: "⚔️", hue: "from-yellow-700 to-amber-900", console: "PC", genre: "Souls-like", rating: 9.5, price: 120, trailer: "E3Huy2cdih0" },
+  { id: "vr", title: "VR Experience", emoji: "🥽", hue: "from-violet-600 to-indigo-900", console: "VR", genre: "Immersive", rating: 8.9, price: 200, trailer: "aa_QzYyxlNw" },
 ];
 
 export type FoodItem = { name: string; price: number; category: string; emoji: string; tag?: string };
@@ -67,37 +94,29 @@ export const FOOD: FoodItem[] = [
   { name: "Neon Burger Combo", price: 260, category: "Burger", emoji: "🍔", tag: "Combo" },
   { name: "Smash Cheese Burger", price: 240, category: "Burger", emoji: "🍔" },
   { name: "Paneer Tikka Burger", price: 220, category: "Burger", emoji: "🍔" },
-  { name: "Loaded Fries", price: 180, category: "French Fries", emoji: "🍟" },
-  { name: "Peri Peri Fries", price: 160, category: "French Fries", emoji: "🍟" },
-  { name: "Chicken Wrap", price: 200, category: "Wraps", emoji: "🌯" },
-  { name: "Veg Shawarma Wrap", price: 180, category: "Wraps", emoji: "🌯" },
-  { name: "Club Sandwich", price: 190, category: "Sandwiches", emoji: "🥪" },
-  { name: "Grilled Sandwich", price: 150, category: "Sandwiches", emoji: "🥪" },
+  { name: "Loaded Fries", price: 180, category: "Fries", emoji: "🍟" },
+  { name: "Peri Peri Fries", price: 160, category: "Fries", emoji: "🍟" },
+  { name: "Club Sandwich", price: 190, category: "Sandwich", emoji: "🥪" },
+  { name: "Grilled Sandwich", price: 150, category: "Sandwich", emoji: "🥪" },
   { name: "Alfredo Pasta", price: 240, category: "Pasta", emoji: "🍝" },
   { name: "Arrabbiata Pasta", price: 220, category: "Pasta", emoji: "🍝" },
+  { name: "Loaded Nachos", price: 180, category: "Nachos", emoji: "🌮" },
+  { name: "Cheesy Nachos", price: 200, category: "Nachos", emoji: "🌮" },
   { name: "Cold Coffee", price: 140, category: "Cold Coffee", emoji: "🥤", tag: "Bestseller" },
   { name: "Mocha Frappe", price: 180, category: "Cold Coffee", emoji: "☕" },
-  { name: "Mocktail Tower", price: 180, category: "Mocktails", emoji: "🍹" },
-  { name: "Blue Lagoon", price: 160, category: "Mocktails", emoji: "🍸" },
   { name: "Coke / Pepsi", price: 80, category: "Soft Drinks", emoji: "🥤" },
   { name: "Sprite", price: 80, category: "Soft Drinks", emoji: "🥤" },
   { name: "Chocolate Milkshake", price: 180, category: "Milkshakes", emoji: "🥛" },
   { name: "Oreo Milkshake", price: 200, category: "Milkshakes", emoji: "🥛" },
-  { name: "Choco Lava Brownie", price: 160, category: "Brownies", emoji: "🍫", tag: "Hot" },
   { name: "Vanilla Sundae", price: 140, category: "Ice Cream", emoji: "🍨" },
   { name: "Belgian Chocolate Scoop", price: 180, category: "Ice Cream", emoji: "🍦" },
-  { name: "Dark Chocolate Bar", price: 120, category: "Chocolate", emoji: "🍫" },
-  { name: "Choco Chip Cookies", price: 120, category: "Cookies", emoji: "🍪" },
-  { name: "Loaded Nachos", price: 180, category: "Nachos", emoji: "🌮" },
-  { name: "Red Bull", price: 150, category: "Energy Drinks", emoji: "⚡", tag: "Gamer fuel" },
-  { name: "Monster", price: 160, category: "Energy Drinks", emoji: "⚡" },
+  { name: "Choco Lava Brownie", price: 160, category: "Brownies", emoji: "🍫", tag: "Hot" },
+  { name: "Walnut Brownie", price: 180, category: "Brownies", emoji: "🍫" },
   { name: "Gaming Combo (Burger + Fries + Red Bull)", price: 420, category: "Gaming Combo", emoji: "🎮", tag: "Save ₹80" },
   { name: "Movie Combo (Popcorn + Coke + Nachos)", price: 380, category: "Movie Combo", emoji: "🎬", tag: "Save ₹100" },
-  { name: "Family Combo (2 Pizza + 4 Drinks)", price: 780, category: "Family Combo", emoji: "👨‍👩‍👧", tag: "Best value" },
-  { name: "Premium Combo (Pizza + Pasta + Mocktail + Brownie)", price: 920, category: "Premium Combo", emoji: "👑", tag: "Luxury" },
 ];
 
-export const FOOD_CATEGORIES = Array.from(new Set(FOOD.map((f) => f.category)));
+export const FOOD_CATEGORIES = ["Popcorn","Pizza","Burger","Fries","Sandwich","Pasta","Nachos","Cold Coffee","Soft Drinks","Milkshakes","Ice Cream","Brownies","Gaming Combo","Movie Combo"];
 
 export const SHOWTIMES = ["12:30 PM", "3:00 PM", "6:15 PM", "9:30 PM"];
 export const GAMING_SLOTS = ["10:00", "12:00", "14:00", "16:00", "18:00", "20:00", "22:00"];
@@ -106,6 +125,37 @@ export const GAMING_DURATIONS = [
   { label: "2 Hours", value: "2h", price: 100 },
   { label: "3 Hours", value: "3h", price: 140 },
   { label: "4 Hours", value: "4h", price: 180 },
+];
+
+// Rewards catalogue — redeem ArenaCoins
+export const REWARDS = [
+  { id: "r1", title: "1 Hour Gaming", cost: 800, category: "Gaming", emoji: "🎮" },
+  { id: "r2", title: "Movie Ticket", cost: 1200, category: "Movies", emoji: "🎬" },
+  { id: "r3", title: "Movie Combo Snack", cost: 600, category: "Snacks", emoji: "🍿" },
+  { id: "r4", title: "Gaming Combo Snack", cost: 700, category: "Snacks", emoji: "🍔" },
+  { id: "r5", title: "Premium Membership 1 Month", cost: 5000, category: "Membership", emoji: "👑" },
+  { id: "r6", title: "Tournament Entry", cost: 1500, category: "Tournaments", emoji: "🏆" },
+  { id: "r7", title: "VR Session 30min", cost: 2000, category: "Gaming", emoji: "🥽" },
+  { id: "r8", title: "Free Popcorn", cost: 400, category: "Snacks", emoji: "🍿" },
+];
+
+// Daily Spin prizes
+export const SPIN_PRIZES = [
+  { label: "50 Coins", coins: 50, color: "#a855f7" },
+  { label: "100 XP", xp: 100, color: "#06b6d4" },
+  { label: "10 Coins", coins: 10, color: "#f59e0b" },
+  { label: "200 Coins", coins: 200, color: "#ec4899" },
+  { label: "50 XP", xp: 50, color: "#22d3ee" },
+  { label: "500 Coins!", coins: 500, color: "#facc15" },
+  { label: "25 Coins", coins: 25, color: "#8b5cf6" },
+  { label: "Free Snack", coins: 100, xp: 50, color: "#f43f5e" },
+];
+
+export const DAILY_CHALLENGES = [
+  { id: "c1", title: "Play any online game", reward: 50, emoji: "🕹️" },
+  { id: "c2", title: "Book a session or movie", reward: 150, emoji: "🎟️" },
+  { id: "c3", title: "Order a snack", reward: 75, emoji: "🍿" },
+  { id: "c4", title: "Invite a friend to a room", reward: 100, emoji: "👥" },
 ];
 
 export type Tournament = {
