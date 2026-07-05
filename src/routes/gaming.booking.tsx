@@ -144,7 +144,7 @@ function GamingBooking() {
                 <button
                   onClick={() => arena.toggleNotify(g.id)}
                   className="rounded-full glass px-5 py-3 text-sm hover:border-neon-gold/60"
-                >{useArena.getState ? "" : ""}🔔 Notify Me on Launch</button>
+                >🔔 Notify Me on Launch</button>
                 <button
                   onClick={() => arena.toggleWishlist(g.id)}
                   className="rounded-full glass px-5 py-3 text-sm hover:border-neon-purple/60"
