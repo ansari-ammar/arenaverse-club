@@ -120,10 +120,44 @@ export const arena = {
   },
 
   commitBooking(b: Booking) {
+    // Award coins and XP for bookings
+    const earnedCoins = Math.round(b.pricing.total / 10);
+    const earnedXp = 50;
     this.set({
       bookings: [b, ...state.bookings],
       occupiedSeats: b.type === "movie" && b.seats ? [...state.occupiedSeats, ...b.seats] : state.occupiedSeats,
       draft: { food: [] },
+      coins: state.coins + earnedCoins,
+      xp: state.xp + earnedXp,
+    });
+  },
+
+  addCoins(n: number) { this.set({ coins: Math.max(0, state.coins + n) }); },
+  addXp(n: number) { this.set({ xp: Math.max(0, state.xp + n) }); },
+  spendCoins(n: number): boolean {
+    if (state.coins < n) return false;
+    this.set({ coins: state.coins - n });
+    return true;
+  },
+  markSpin() { this.set({ lastSpin: Date.now() }); },
+  canSpin(): boolean {
+    if (!state.lastSpin) return true;
+    return Date.now() - state.lastSpin > 24 * 60 * 60 * 1000;
+  },
+  toggleWishlist(id: string) {
+    const has = state.wishlist.includes(id);
+    this.set({ wishlist: has ? state.wishlist.filter(x => x !== id) : [...state.wishlist, id] });
+  },
+  toggleNotify(id: string) {
+    const has = state.notifyList.includes(id);
+    this.set({ notifyList: has ? state.notifyList.filter(x => x !== id) : [...state.notifyList, id] });
+  },
+  completeChallenge(id: string, reward: number) {
+    if (state.completedChallenges.includes(id)) return;
+    this.set({
+      completedChallenges: [...state.completedChallenges, id],
+      coins: state.coins + reward,
+      xp: state.xp + Math.round(reward / 2),
     });
   },
 };
