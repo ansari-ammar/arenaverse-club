@@ -10,6 +10,7 @@ const MENU: { label: string; to: string; icon: string }[] = [
   { label: "Book Experience", to: "/booking", icon: "🎟️" },
   { label: "Food Lounge", to: "/food", icon: "🍿" },
   { label: "Tournaments", to: "/events/tournaments", icon: "🏆" },
+  { label: "Rewards & Spin", to: "/rewards", icon: "🎡" },
   { label: "My Pass", to: "/pass", icon: "🪪" },
   { label: "Profile", to: "/profile", icon: "👤" },
   { label: "Support", to: "/support", icon: "🛟" },
