@@ -1,5 +1,5 @@
 import { createFileRoute, useNavigate, Link } from "@tanstack/react-router";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { ArenaShell, GlassCard } from "@/components/arena/Shell";
 import { GAMES, GAMING_SLOTS, GAMING_DURATIONS, FOOD, type Game } from "@/lib/arena-data";
 import { arena, useArena } from "@/lib/arena-store";
@@ -65,7 +65,7 @@ function GameCard({ g, selected, onSelect, onTrailer }: { g: Game; selected: boo
 
 function CountdownBanner({ target }: { target: string }) {
   const [now, setNow] = useState(Date.now());
-  useMemo(() => { const t = setInterval(() => setNow(Date.now()), 1000); return () => clearInterval(t); }, []);
+  useEffect(() => { const t = setInterval(() => setNow(Date.now()), 1000); return () => clearInterval(t); }, []);
   const diff = Math.max(0, new Date(target).getTime() - now);
   const d = Math.floor(diff / 86400000);
   const h = Math.floor((diff / 3600000) % 24);
