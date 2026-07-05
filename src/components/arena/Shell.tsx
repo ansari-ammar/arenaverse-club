@@ -76,9 +76,9 @@ export function ArenaShell({ children, title }: { children: ReactNode; title?: s
             <Link to="/gaming/booking" className="hover:text-foreground">Gaming</Link>
             <Link to="/play-online" className="hover:text-foreground">Play Online</Link>
             <Link to="/events/tournaments" className="hover:text-foreground">Tournaments</Link>
+            <Link to="/rewards" className="hover:text-foreground">Rewards</Link>
             <Link to="/food" className="hover:text-foreground">Food</Link>
             <Link to="/pass" className="hover:text-foreground">My Pass</Link>
-            <Link to="/about" className="hover:text-foreground">About</Link>
           </nav>
           <div className="flex items-center gap-2">
             <button
