@@ -36,10 +36,17 @@ type State = {
   pendingUUID?: string;
   draft: Partial<Booking> & { food?: Booking["food"] };
   bookings: Booking[];
-  occupiedSeats: string[]; // demo "live" availability
+  occupiedSeats: string[];
+  coins: number;
+  xp: number;
+  streak: number;
+  lastSpin: number | null;
+  wishlist: string[];
+  notifyList: string[];
+  completedChallenges: string[];
 };
 
-const KEY = "arenaverse_state_v1";
+const KEY = "arenaverse_state_v2";
 
 const initial: State = {
   user: null,
