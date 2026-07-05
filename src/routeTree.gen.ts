@@ -10,6 +10,7 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SupportRouteImport } from './routes/support'
+import { Route as RewardsRouteImport } from './routes/rewards'
 import { Route as ReceiptRouteImport } from './routes/receipt'
 import { Route as ProfileRouteImport } from './routes/profile'
 import { Route as PlayOnlineRouteImport } from './routes/play-online'
@@ -39,6 +40,11 @@ import { Route as AuthGuestLoginRouteImport } from './routes/auth.guest-login'
 const SupportRoute = SupportRouteImport.update({
   id: '/support',
   path: '/support',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const RewardsRoute = RewardsRouteImport.update({
+  id: '/rewards',
+  path: '/rewards',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ReceiptRoute = ReceiptRouteImport.update({
@@ -179,6 +185,7 @@ export interface FileRoutesByFullPath {
   '/play-online': typeof PlayOnlineRoute
   '/profile': typeof ProfileRoute
   '/receipt': typeof ReceiptRoute
+  '/rewards': typeof RewardsRoute
   '/support': typeof SupportRoute
   '/auth/guest-login': typeof AuthGuestLoginRoute
   '/auth/login': typeof AuthLoginRoute
@@ -207,6 +214,7 @@ export interface FileRoutesByTo {
   '/play-online': typeof PlayOnlineRoute
   '/profile': typeof ProfileRoute
   '/receipt': typeof ReceiptRoute
+  '/rewards': typeof RewardsRoute
   '/support': typeof SupportRoute
   '/auth/guest-login': typeof AuthGuestLoginRoute
   '/auth/login': typeof AuthLoginRoute
@@ -236,6 +244,7 @@ export interface FileRoutesById {
   '/play-online': typeof PlayOnlineRoute
   '/profile': typeof ProfileRoute
   '/receipt': typeof ReceiptRoute
+  '/rewards': typeof RewardsRoute
   '/support': typeof SupportRoute
   '/auth/guest-login': typeof AuthGuestLoginRoute
   '/auth/login': typeof AuthLoginRoute
@@ -266,6 +275,7 @@ export interface FileRouteTypes {
     | '/play-online'
     | '/profile'
     | '/receipt'
+    | '/rewards'
     | '/support'
     | '/auth/guest-login'
     | '/auth/login'
@@ -294,6 +304,7 @@ export interface FileRouteTypes {
     | '/play-online'
     | '/profile'
     | '/receipt'
+    | '/rewards'
     | '/support'
     | '/auth/guest-login'
     | '/auth/login'
@@ -322,6 +333,7 @@ export interface FileRouteTypes {
     | '/play-online'
     | '/profile'
     | '/receipt'
+    | '/rewards'
     | '/support'
     | '/auth/guest-login'
     | '/auth/login'
@@ -351,6 +363,7 @@ export interface RootRouteChildren {
   PlayOnlineRoute: typeof PlayOnlineRoute
   ProfileRoute: typeof ProfileRoute
   ReceiptRoute: typeof ReceiptRoute
+  RewardsRoute: typeof RewardsRoute
   SupportRoute: typeof SupportRoute
   AuthGuestLoginRoute: typeof AuthGuestLoginRoute
   AuthLoginRoute: typeof AuthLoginRoute
@@ -372,6 +385,13 @@ declare module '@tanstack/react-router' {
       path: '/support'
       fullPath: '/support'
       preLoaderRoute: typeof SupportRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/rewards': {
+      id: '/rewards'
+      path: '/rewards'
+      fullPath: '/rewards'
+      preLoaderRoute: typeof RewardsRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/receipt': {
@@ -579,6 +599,7 @@ const rootRouteChildren: RootRouteChildren = {
   PlayOnlineRoute: PlayOnlineRoute,
   ProfileRoute: ProfileRoute,
   ReceiptRoute: ReceiptRoute,
+  RewardsRoute: RewardsRoute,
   SupportRoute: SupportRoute,
   AuthGuestLoginRoute: AuthGuestLoginRoute,
   AuthLoginRoute: AuthLoginRoute,
