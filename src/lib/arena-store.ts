@@ -54,8 +54,14 @@ const initial: State = {
   pendingType: null,
   draft: { food: [] },
   bookings: [],
-  // pre-occupied seats for realism
   occupiedSeats: ["A3", "B2", "C5", "D1", "E4", "B5"],
+  coins: 250,
+  xp: 120,
+  streak: 1,
+  lastSpin: null,
+  wishlist: [],
+  notifyList: [],
+  completedChallenges: [],
 };
 
 let state: State = load();
