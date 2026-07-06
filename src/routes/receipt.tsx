@@ -1,5 +1,6 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { ArenaShell, GlassCard } from "@/components/arena/Shell";
+import { ArenaLogo } from "@/components/arena/Logo";
 import { useArena } from "@/lib/arena-store";
 
 export const Route = createFileRoute("/receipt")({
