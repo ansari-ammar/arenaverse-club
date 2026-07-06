@@ -1,6 +1,7 @@
 import { Link } from "@tanstack/react-router";
 import { useEffect, useState, type ReactNode } from "react";
 import { useArena, arena } from "@/lib/arena-store";
+import { ArenaLogo } from "@/components/arena/Logo";
 
 const MENU: { label: string; to: string; icon: string }[] = [
   { label: "Home", to: "/", icon: "🏠" },
@@ -53,8 +54,8 @@ export function ArenaShell({ children, title }: { children: ReactNode; title?: s
       </div>
 
       <header className="sticky top-0 z-40 backdrop-blur-xl bg-background/60 border-b border-border">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-3">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 sm:px-6 py-3 sm:py-4">
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
             <button
               onClick={() => setOpen(true)}
               aria-label="Open menu"
@@ -66,9 +67,9 @@ export function ArenaShell({ children, title }: { children: ReactNode; title?: s
                 <span className="block h-0.5 w-4 bg-foreground" />
               </span>
             </button>
-            <Link to="/" className="flex items-center gap-3">
-              <div className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-neon-purple to-neon-blue glow-purple font-display font-black">A</div>
-              <span className="font-display text-lg font-black tracking-wider neon-text">ARENAVERSE</span>
+            <Link to="/" className="flex min-w-0 items-center gap-2 sm:gap-3">
+              <ArenaLogo size={40} />
+              <span className="font-display text-base sm:text-lg font-black tracking-wider neon-text truncate">ARENAVERSE</span>
             </Link>
           </div>
           <nav className="hidden lg:flex items-center gap-5 text-sm text-muted-foreground">
@@ -80,7 +81,7 @@ export function ArenaShell({ children, title }: { children: ReactNode; title?: s
             <Link to="/food" className="hover:text-foreground">Food</Link>
             <Link to="/pass" className="hover:text-foreground">My Pass</Link>
           </nav>
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             <button
               onClick={toggle}
               aria-label="Toggle theme"
@@ -108,10 +109,13 @@ export function ArenaShell({ children, title }: { children: ReactNode; title?: s
       {open && (
         <div className="fixed inset-0 z-50">
           <button aria-label="Close menu" onClick={() => setOpen(false)} className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
-          <aside className="absolute left-0 top-0 h-full w-[320px] max-w-[85vw] glass border-r border-border p-6 overflow-y-auto animate-in slide-in-from-left">
+          <aside className="absolute left-0 top-0 h-full w-[320px] max-w-[85vw] glass border-r border-border p-5 sm:p-6 overflow-y-auto animate-in slide-in-from-left">
             <div className="flex items-center justify-between">
-              <span className="font-display font-black neon-text tracking-wider">ARENAVERSE</span>
-              <button onClick={() => setOpen(false)} className="h-8 w-8 rounded-full glass" aria-label="Close">✕</button>
+              <div className="flex items-center gap-2 min-w-0">
+                <ArenaLogo size={36} />
+                <span className="font-display font-black neon-text tracking-wider truncate">ARENAVERSE</span>
+              </div>
+              <button onClick={() => setOpen(false)} className="h-9 w-9 shrink-0 rounded-full glass" aria-label="Close">✕</button>
             </div>
             {user && (
               <div className="mt-5 rounded-xl glass p-3">

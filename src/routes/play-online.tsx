@@ -94,12 +94,39 @@ function PlayOnline() {
 
       <div className="grid grid-cols-2 gap-3 sm:gap-4 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5">
         {filtered.map(g => (
-          <div key={g.id} className="group relative overflow-hidden rounded-2xl glass transition hover:-translate-y-1 hover:glow-purple">
-            <div className={`relative aspect-[4/5] bg-gradient-to-br ${g.hue} p-4 flex items-end`}>
-              <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
-              <div className="absolute top-2 right-2 glass rounded-md px-2 py-0.5 text-[10px] uppercase tracking-wider text-neon-cyan">{g.difficulty}</div>
-              <div className="absolute top-2 left-2 text-4xl drop-shadow-lg">{g.emoji}</div>
-              <div className="relative">
+          <div key={g.id} className="group relative overflow-hidden rounded-2xl glass border border-white/5 transition hover:-translate-y-1 hover:glow-purple hover:border-neon-purple/40">
+            {/* Banner / cover art */}
+            <div className={`relative aspect-[4/5] bg-gradient-to-br ${g.hue} overflow-hidden`}>
+              {/* hex pattern overlay */}
+              <svg aria-hidden className="absolute inset-0 h-full w-full opacity-25 mix-blend-overlay" xmlns="http://www.w3.org/2000/svg">
+                <defs>
+                  <pattern id={`hex-${g.id}`} width="22" height="26" patternUnits="userSpaceOnUse" patternTransform="scale(1.2)">
+                    <path d="M11 0 L22 6 V19 L11 25 L0 19 V6 Z" fill="none" stroke="white" strokeWidth="0.6" />
+                  </pattern>
+                </defs>
+                <rect width="100%" height="100%" fill={`url(#hex-${g.id})`} />
+              </svg>
+              {/* radial glow */}
+              <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_35%,rgba(255,255,255,0.28),transparent_60%)]" />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
+
+              {/* Top badges */}
+              <div className="absolute top-2 left-2 right-2 flex items-start justify-between gap-2">
+                <span className="rounded-md bg-black/60 backdrop-blur px-2 py-0.5 text-[10px] font-bold uppercase tracking-wider text-neon-cyan border border-white/10">
+                  {g.multiplayer ? "MP" : "SP"}
+                </span>
+                <span className="rounded-md bg-black/60 backdrop-blur px-2 py-0.5 text-[10px] uppercase tracking-wider text-neon-gold border border-white/10">
+                  {g.difficulty}
+                </span>
+              </div>
+
+              {/* Big emoji as art */}
+              <div className="absolute inset-0 grid place-items-center">
+                <span className="text-6xl sm:text-7xl drop-shadow-[0_0_30px_rgba(0,0,0,0.6)] transition-transform group-hover:scale-110">{g.emoji}</span>
+              </div>
+
+              {/* Bottom title */}
+              <div className="absolute inset-x-0 bottom-0 p-3">
                 <div className="text-[10px] uppercase tracking-wider text-neon-cyan">{g.category}</div>
                 <h3 className="font-display text-base font-black leading-tight">{g.name}</h3>
               </div>
@@ -107,9 +134,9 @@ function PlayOnline() {
             <div className="p-3 sm:p-4">
               <p className="text-[11px] text-muted-foreground line-clamp-2 min-h-[2.5rem]">{g.desc}</p>
               <div className="mt-3 grid grid-cols-2 gap-2">
-                <button onClick={() => play(g)} className="rounded-lg bg-gradient-to-r from-neon-purple to-neon-blue px-2 py-2 text-[11px] font-bold uppercase tracking-wider glow-purple">Play Now</button>
+                <button onClick={() => play(g)} className="rounded-lg bg-gradient-to-r from-neon-purple to-neon-blue px-2 py-2.5 text-[11px] font-bold uppercase tracking-wider glow-purple active:scale-95 transition">Play Now</button>
                 <button onClick={() => play(g, true)} disabled={!g.multiplayer}
-                  className="rounded-lg border border-neon-cyan/40 px-2 py-2 text-[11px] font-bold uppercase tracking-wider text-neon-cyan disabled:opacity-30 disabled:cursor-not-allowed">
+                  className="rounded-lg border border-neon-cyan/40 px-2 py-2.5 text-[11px] font-bold uppercase tracking-wider text-neon-cyan disabled:opacity-30 disabled:cursor-not-allowed active:scale-95 transition">
                   Invite
                 </button>
               </div>

@@ -2,6 +2,7 @@ import { createFileRoute, Link } from "@tanstack/react-router";
 import { useEffect, useState } from "react";
 import QRCode from "react-qr-code";
 import { ArenaShell, GlassCard } from "@/components/arena/Shell";
+import { ArenaLogo } from "@/components/arena/Logo";
 import { useArena } from "@/lib/arena-store";
 
 export const Route = createFileRoute("/gaming/pass")({
@@ -34,7 +35,7 @@ function GamingPass() {
 
         <div className="flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-neon-purple to-neon-blue glow-purple font-display font-black text-lg">A</div>
+            <ArenaLogo size={44} />
             <div>
               <div className="font-display text-base font-black tracking-widest neon-text">ARENAVERSE</div>
               <div className="text-[10px] uppercase tracking-[0.3em] text-neon-gold">Gaming Pass · Premium</div>
