@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import { useState } from "react";
 import heroImg from "@/assets/hero-arena.jpg";
+import { ArenaLogo } from "@/components/arena/Logo";
 
 export const Route = createFileRoute("/login")({
   head: () => ({
@@ -29,7 +30,7 @@ function LoginPage() {
         {/* Left — brand panel */}
         <div className="hidden lg:flex flex-col gap-8">
           <Link to="/" className="flex items-center gap-3 w-fit">
-            <div className="grid h-11 w-11 place-items-center rounded-xl bg-gradient-to-br from-neon-purple to-neon-blue glow-purple font-display font-black text-lg">A</div>
+            <ArenaLogo size={52} />
             <span className="font-display text-2xl font-black tracking-wider neon-text">ARENAVERSE</span>
           </Link>
 
@@ -71,7 +72,7 @@ function LoginPage() {
         {/* Right — form card */}
         <div className="mx-auto w-full max-w-md">
           <div className="lg:hidden mb-8 flex items-center justify-center gap-3">
-            <div className="grid h-10 w-10 place-items-center rounded-xl bg-gradient-to-br from-neon-purple to-neon-blue glow-purple font-display font-black">A</div>
+            <ArenaLogo size={48} />
             <span className="font-display text-xl font-black tracking-wider neon-text">ARENAVERSE</span>
           </div>
 
