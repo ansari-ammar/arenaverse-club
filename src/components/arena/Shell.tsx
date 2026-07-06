@@ -54,8 +54,8 @@ export function ArenaShell({ children, title }: { children: ReactNode; title?: s
       </div>
 
       <header className="sticky top-0 z-40 backdrop-blur-xl bg-background/60 border-b border-border">
-        <div className="mx-auto flex max-w-7xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-3">
+        <div className="mx-auto flex max-w-7xl items-center justify-between gap-2 px-3 sm:px-6 py-3 sm:py-4">
+          <div className="flex min-w-0 items-center gap-2 sm:gap-3">
             <button
               onClick={() => setOpen(true)}
               aria-label="Open menu"
@@ -81,7 +81,7 @@ export function ArenaShell({ children, title }: { children: ReactNode; title?: s
             <Link to="/food" className="hover:text-foreground">Food</Link>
             <Link to="/pass" className="hover:text-foreground">My Pass</Link>
           </nav>
-          <div className="flex items-center gap-2">
+          <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             <button
               onClick={toggle}
               aria-label="Toggle theme"
