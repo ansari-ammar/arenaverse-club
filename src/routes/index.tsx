@@ -579,7 +579,7 @@ function Footer() {
 
         <div className="mt-12 flex flex-col gap-6 md:flex-row md:justify-between items-center text-sm text-muted-foreground">
           <div className="flex items-center gap-2">
-            <div className="grid h-8 w-8 place-items-center rounded-lg bg-gradient-to-br from-neon-purple to-neon-blue font-display font-black text-xs">A</div>
+            <ArenaLogo size={32} />
             <span className="font-display font-black tracking-wider">ARENAVERSE</span>
             <span className="opacity-60">© 2026</span>
           </div>
