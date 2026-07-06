@@ -18,6 +18,7 @@ import avengersImg from "@/assets/movies/avengers.jpg";
 import johnwickImg from "@/assets/movies/johnwick.jpg";
 import spidermanImg from "@/assets/movies/spiderman.jpg";
 import { arena, useArena } from "@/lib/arena-store";
+import { ArenaLogo } from "@/components/arena/Logo";
 
 export const Route = createFileRoute("/")({
   component: ArenaVerse,
@@ -159,9 +160,9 @@ function Nav({ onMenu }: { onMenu: () => void }) {
               <span className="block h-0.5 w-4 bg-foreground" />
             </span>
           </button>
-          <Link to="/" className="flex items-center gap-2.5 shrink-0">
-            <div className="grid h-9 w-9 place-items-center rounded-lg bg-gradient-to-br from-neon-purple to-neon-blue glow-purple font-display font-black">A</div>
-            <span className="font-display text-xl font-black tracking-wider neon-text">ARENAVERSE</span>
+          <Link to="/" className="flex items-center gap-2.5 shrink-0 min-w-0">
+            <ArenaLogo size={40} />
+            <span className="font-display text-lg sm:text-xl font-black tracking-wider neon-text truncate">ARENAVERSE</span>
           </Link>
         </div>
         <nav className="hidden lg:flex items-center gap-7 text-sm text-muted-foreground">
@@ -209,8 +210,11 @@ function Drawer({ onClose }: { onClose: () => void }) {
       <button aria-label="Close" onClick={onClose} className="absolute inset-0 bg-black/70 backdrop-blur-sm" />
       <aside className="absolute left-0 top-0 h-full w-[320px] max-w-[85vw] glass border-r border-border p-6 overflow-y-auto animate-in slide-in-from-left">
         <div className="flex items-center justify-between">
-          <span className="font-display font-black neon-text tracking-wider">ARENAVERSE</span>
-          <button onClick={onClose} className="h-8 w-8 rounded-full glass" aria-label="Close">✕</button>
+          <div className="flex items-center gap-2 min-w-0">
+            <ArenaLogo size={36} />
+            <span className="font-display font-black neon-text tracking-wider truncate">ARENAVERSE</span>
+          </div>
+          <button onClick={onClose} className="h-9 w-9 shrink-0 rounded-full glass" aria-label="Close">✕</button>
         </div>
         {user && (
           <div className="mt-5 rounded-xl glass p-3">
