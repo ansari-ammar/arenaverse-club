@@ -1,6 +1,7 @@
 import { createFileRoute, Link } from "@tanstack/react-router";
 import QRCode from "react-qr-code";
 import { ArenaShell, GlassCard } from "@/components/arena/Shell";
+import { ArenaLogo } from "@/components/arena/Logo";
 import { useArena } from "@/lib/arena-store";
 
 export const Route = createFileRoute("/pass")({
@@ -34,7 +35,7 @@ function PassPage() {
 
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
-                <div className="grid h-9 w-9 place-items-center rounded-xl bg-gradient-to-br from-neon-purple to-neon-blue font-display font-black">A</div>
+                <ArenaLogo size={36} />
                 <span className="font-display text-sm font-black tracking-widest neon-text">ARENAVERSE</span>
               </div>
               <span className="rounded-full bg-neon-cyan/20 px-3 py-1 text-[10px] uppercase tracking-wider text-neon-cyan">{latest.payment.status === "success" ? "Confirmed" : "Pending"}</span>

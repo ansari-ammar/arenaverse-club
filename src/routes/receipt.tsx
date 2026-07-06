@@ -21,9 +21,12 @@ function ReceiptPage() {
       <div className="mx-auto max-w-2xl">
         <GlassCard>
           <div className="flex items-center justify-between border-b border-border pb-4">
-            <div>
-              <div className="font-display text-xl font-black neon-text">ARENAVERSE</div>
-              <div className="text-xs text-muted-foreground">United University · Rawatpur · Prayagraj</div>
+            <div className="flex items-center gap-3">
+              <ArenaLogo size={44} />
+              <div>
+                <div className="font-display text-xl font-black neon-text">ARENAVERSE</div>
+                <div className="text-xs text-muted-foreground">United University · Rawatpur · Prayagraj</div>
+              </div>
             </div>
             <div className="text-right text-xs">
               <div>Receipt #{b.id}</div>
