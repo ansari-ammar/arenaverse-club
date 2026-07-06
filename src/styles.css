@@ -122,6 +122,7 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
@@ -133,6 +134,13 @@
       radial-gradient(ellipse 60% 50% at 80% 50%, oklch(0.55 0.25 265 / 0.15), transparent);
     background-attachment: fixed;
     min-height: 100vh;
+    overflow-x: hidden;
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  /* Touch-friendly minimum tap targets on small screens */
+  @media (max-width: 640px) {
+    button, a { touch-action: manipulation; }
   }
 
   h1, h2, h3, h4 {
