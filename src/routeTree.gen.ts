@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WatchRouteImport } from './routes/watch'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as RewardsRouteImport } from './routes/rewards'
 import { Route as ReceiptRouteImport } from './routes/receipt'
@@ -37,6 +38,11 @@ import { Route as AuthSignupRouteImport } from './routes/auth.signup'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AuthGuestLoginRouteImport } from './routes/auth.guest-login'
 
+const WatchRoute = WatchRouteImport.update({
+  id: '/watch',
+  path: '/watch',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SupportRoute = SupportRouteImport.update({
   id: '/support',
   path: '/support',
@@ -187,6 +193,7 @@ export interface FileRoutesByFullPath {
   '/receipt': typeof ReceiptRoute
   '/rewards': typeof RewardsRoute
   '/support': typeof SupportRoute
+  '/watch': typeof WatchRoute
   '/auth/guest-login': typeof AuthGuestLoginRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
@@ -216,6 +223,7 @@ export interface FileRoutesByTo {
   '/receipt': typeof ReceiptRoute
   '/rewards': typeof RewardsRoute
   '/support': typeof SupportRoute
+  '/watch': typeof WatchRoute
   '/auth/guest-login': typeof AuthGuestLoginRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
@@ -246,6 +254,7 @@ export interface FileRoutesById {
   '/receipt': typeof ReceiptRoute
   '/rewards': typeof RewardsRoute
   '/support': typeof SupportRoute
+  '/watch': typeof WatchRoute
   '/auth/guest-login': typeof AuthGuestLoginRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
@@ -277,6 +286,7 @@ export interface FileRouteTypes {
     | '/receipt'
     | '/rewards'
     | '/support'
+    | '/watch'
     | '/auth/guest-login'
     | '/auth/login'
     | '/auth/signup'
@@ -306,6 +316,7 @@ export interface FileRouteTypes {
     | '/receipt'
     | '/rewards'
     | '/support'
+    | '/watch'
     | '/auth/guest-login'
     | '/auth/login'
     | '/auth/signup'
@@ -335,6 +346,7 @@ export interface FileRouteTypes {
     | '/receipt'
     | '/rewards'
     | '/support'
+    | '/watch'
     | '/auth/guest-login'
     | '/auth/login'
     | '/auth/signup'
@@ -365,6 +377,7 @@ export interface RootRouteChildren {
   ReceiptRoute: typeof ReceiptRoute
   RewardsRoute: typeof RewardsRoute
   SupportRoute: typeof SupportRoute
+  WatchRoute: typeof WatchRoute
   AuthGuestLoginRoute: typeof AuthGuestLoginRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthSignupRoute: typeof AuthSignupRoute
@@ -380,6 +393,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/watch': {
+      id: '/watch'
+      path: '/watch'
+      fullPath: '/watch'
+      preLoaderRoute: typeof WatchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/support': {
       id: '/support'
       path: '/support'
@@ -601,6 +621,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReceiptRoute: ReceiptRoute,
   RewardsRoute: RewardsRoute,
   SupportRoute: SupportRoute,
+  WatchRoute: WatchRoute,
   AuthGuestLoginRoute: AuthGuestLoginRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthSignupRoute: AuthSignupRoute,
