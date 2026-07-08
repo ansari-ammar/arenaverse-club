@@ -192,3 +192,70 @@ export const TOURNAMENTS: Tournament[] = [
   { id: "t5", title: "Tekken 8 Premium Showdown", game: "Tekken 8", banner: tekken, date: "2026-08-02", prize: 75000, entry: 500, participants: 24, status: "premium", rules: ["1v1 Bo5", "Tournament rules", "Premium members"] },
   { id: "t6", title: "NFS Drift Night", game: "Need for Speed", banner: nfs, date: "2026-07-15", prize: 15000, entry: 100, participants: 28, status: "upcoming", rules: ["Time trial", "Drift scoring", "3 attempts"] },
 ];
+
+// ==================== WATCH ONLINE (free / officially licensed) ====================
+export type WatchItem = {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  category: "Trailer" | "Documentary" | "Comedy" | "Reality" | "Travel" | "Tech" | "Gaming" | "Campus" | "Public Domain";
+  youtubeId: string;
+  source: string; // official source label
+};
+
+export const WATCH_CATEGORIES = ["All","Trailer","Documentary","Comedy","Reality","Travel","Tech","Gaming","Campus","Public Domain"] as const;
+
+export const WATCH_ONLINE: WatchItem[] = [
+  // Official trailers
+  { id: "w1", title: "Dune: Part Two — Official Trailer", description: "Warner Bros. official trailer.", duration: "3:00", category: "Trailer", youtubeId: "Way9Dexny3w", source: "Warner Bros." },
+  { id: "w2", title: "GTA VI — Official Trailer", description: "Rockstar Games official reveal.", duration: "1:31", category: "Trailer", youtubeId: "QdBZY2fkU-0", source: "Rockstar Games" },
+  { id: "w3", title: "Chhaava — Official Trailer", description: "Maddock Films official trailer.", duration: "3:11", category: "Trailer", youtubeId: "cWq0i9Uu49U", source: "Maddock Films" },
+  { id: "w4", title: "Spider-Verse — Official Trailer", description: "Sony Pictures official trailer.", duration: "2:38", category: "Trailer", youtubeId: "cqGjhVJWtEg", source: "Sony Pictures" },
+
+  // Documentaries (official channels)
+  { id: "w5", title: "NASA: A Year on Mars", description: "NASA-produced documentary on Mars missions.", duration: "22:14", category: "Documentary", youtubeId: "0og6qJIsPzQ", source: "NASA" },
+  { id: "w6", title: "The World in HDR — Planet Earth", description: "BBC Earth official highlights.", duration: "10:02", category: "Documentary", youtubeId: "Xqcs20Fom-Q", source: "BBC Earth" },
+  { id: "w7", title: "Inside a Neutron Star", description: "Kurzgesagt educational documentary.", duration: "9:12", category: "Documentary", youtubeId: "udFxKZRyQt4", source: "Kurzgesagt" },
+
+  // Comedy / Reality / Shows
+  { id: "w8", title: "India's Got Latent — Highlights", description: "Officially uploaded highlight reel.", duration: "18:20", category: "Comedy", youtubeId: "5eWzs-YHRQI", source: "Samay Raina" },
+  { id: "w9", title: "Pretam & Pedro — Ep. 1", description: "Independent web-series (official).", duration: "12:45", category: "Comedy", youtubeId: "M7lc1UVf-VE", source: "Creators" },
+  { id: "w10", title: "MasterChef India — Best Moments", description: "Official Sony Entertainment highlights.", duration: "14:30", category: "Reality", youtubeId: "M7lc1UVf-VE", source: "Sony TV" },
+
+  // Travel / Tech / Gaming / Campus
+  { id: "w11", title: "Iceland in 4K — Travel Film", description: "Officially released short travel film.", duration: "8:04", category: "Travel", youtubeId: "6v2L2UGZJAM", source: "Devin Graham" },
+  { id: "w12", title: "MKBHD — This is the Future", description: "Marques Brownlee official tech feature.", duration: "12:03", category: "Tech", youtubeId: "kIkxq3JXHDs", source: "MKBHD" },
+  { id: "w13", title: "Esports Rewind 2025", description: "Official Riot Games year-in-review.", duration: "6:22", category: "Gaming", youtubeId: "e_E9W2vsRbQ", source: "Riot Games" },
+  { id: "w14", title: "United University Campus Tour", description: "Official campus walkthrough.", duration: "5:10", category: "Campus", youtubeId: "M7lc1UVf-VE", source: "UU Rawatpur" },
+
+  // Public domain classics
+  { id: "w15", title: "Night of the Living Dead (1968)", description: "Public domain horror classic.", duration: "1:35:52", category: "Public Domain", youtubeId: "pElSjmSuvsw", source: "Public Domain" },
+  { id: "w16", title: "Charlie Chaplin — The Kid (1921)", description: "Public domain silent film.", duration: "1:08:15", category: "Public Domain", youtubeId: "BAr9EAAGXhY", source: "Public Domain" },
+];
+
+// ==================== LEADERBOARD (seed data, augmented dynamically) ====================
+export type LeaderboardPlayer = {
+  id: string;
+  name: string;
+  avatar: string; // emoji
+  gamesPlayed: number;
+  highScore: number;
+  tournamentWins: number;
+  coins: number;
+  weekly: number;
+  monthly: number;
+};
+
+export const LEADERBOARD_SEED: LeaderboardPlayer[] = [
+  { id: "p1", name: "NeonNinja", avatar: "🥷", gamesPlayed: 184, highScore: 92450, tournamentWins: 6, coins: 12400, weekly: 2100, monthly: 9800 },
+  { id: "p2", name: "PixelPhantom", avatar: "👾", gamesPlayed: 172, highScore: 88900, tournamentWins: 4, coins: 10850, weekly: 1780, monthly: 8420 },
+  { id: "p3", name: "ShadowByte", avatar: "🕶️", gamesPlayed: 165, highScore: 87200, tournamentWins: 5, coins: 9880, weekly: 1650, monthly: 7900 },
+  { id: "p4", name: "AceRider", avatar: "🏎️", gamesPlayed: 149, highScore: 79800, tournamentWins: 3, coins: 8700, weekly: 1440, monthly: 6820 },
+  { id: "p5", name: "MysticMage", avatar: "🧙", gamesPlayed: 138, highScore: 74200, tournamentWins: 2, coins: 7620, weekly: 1220, monthly: 5980 },
+  { id: "p6", name: "CyberFox", avatar: "🦊", gamesPlayed: 129, highScore: 71100, tournamentWins: 2, coins: 6740, weekly: 1080, monthly: 5210 },
+  { id: "p7", name: "TitanCore", avatar: "🤖", gamesPlayed: 121, highScore: 68950, tournamentWins: 1, coins: 5980, weekly: 940, monthly: 4720 },
+  { id: "p8", name: "BlazePhoenix", avatar: "🔥", gamesPlayed: 114, highScore: 64380, tournamentWins: 1, coins: 5240, weekly: 820, monthly: 4210 },
+  { id: "p9", name: "SonicWave", avatar: "🌊", gamesPlayed: 108, highScore: 61200, tournamentWins: 1, coins: 4820, weekly: 720, monthly: 3820 },
+  { id: "p10", name: "StormEagle", avatar: "🦅", gamesPlayed: 96, highScore: 57980, tournamentWins: 0, coins: 4210, weekly: 640, monthly: 3320 },
+];
