@@ -8,7 +8,7 @@ export const Route = createFileRoute("/movies")({
   component: MoviesPage,
 });
 
-const CATEGORIES = ["All", "Latest", "Action", "Anime", "Comedy", "Thriller", "Esports", "Trending", "Student Choice", "Premium"] as const;
+const CATEGORIES = ["All", "Hollywood", "Bollywood", "Action", "Comedy", "Thriller", "Sci-Fi", "Horror", "Romance", "Family", "Animation", "Anime", "Esports"] as const;
 
 function MoviesPage() {
   const [cat, setCat] = useState<(typeof CATEGORIES)[number]>("All");
@@ -16,7 +16,11 @@ function MoviesPage() {
   const [trailer, setTrailer] = useState<Movie | null>(null);
 
   const featured = useMemo(() => MOVIES.filter(m => m.section.includes("featured")), []);
-  const visible = useMemo(() => cat === "All" ? MOVIES : MOVIES.filter(m => m.category === cat), [cat]);
+  const visible = useMemo(() => {
+    if (cat === "All") return MOVIES;
+    if (cat === "Hollywood") return MOVIES.filter(m => m.language.includes("English") && m.category !== "Bollywood");
+    return MOVIES.filter(m => m.category === cat);
+  }, [cat]);
   const sections = [
     { key: "now", label: "Now Showing" },
     { key: "top", label: "Top Rated" },

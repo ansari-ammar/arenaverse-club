@@ -22,7 +22,7 @@ export type Movie = {
   duration: string;
   price: number;
   rating: number;
-  category: "Latest" | "Action" | "Anime" | "Comedy" | "Thriller" | "Esports" | "Trending" | "Student Choice" | "Premium";
+  category: string;
   language: string;
   year: number;
   seatsLeft: number;
@@ -32,16 +32,29 @@ export type Movie = {
 };
 
 export const MOVIES: Movie[] = [
+  // Hollywood
   { id: "inception", title: "Inception", img: inception, backdrop: inception, duration: "2h 28m", price: 180, rating: 8.8, category: "Thriller", language: "English", year: 2010, seatsLeft: 42, trailer: "YoHD9XEInc0", section: ["featured", "top", "recommended"], synopsis: "A thief who steals corporate secrets through dream-sharing technology is given the inverse task of planting an idea." },
-  { id: "interstellar", title: "Interstellar", img: interstellar, backdrop: interstellar, duration: "2h 49m", price: 200, rating: 8.7, category: "Premium", language: "English", year: 2014, seatsLeft: 36, trailer: "zSWdZVtXT7E", section: ["featured", "top"], synopsis: "A team of explorers travel through a wormhole in space in an attempt to ensure humanity's survival." },
-  { id: "dune", title: "Dune: Part Two", img: dune, backdrop: dune, duration: "2h 46m", price: 220, rating: 8.6, category: "Latest", language: "English", year: 2024, seatsLeft: 28, trailer: "Way9Dexny3w", section: ["featured", "now", "recommended"], synopsis: "Paul Atreides unites with the Fremen while seeking revenge against the conspirators who destroyed his family." },
-  { id: "avengers", title: "Avengers: Endgame", img: avengers, backdrop: avengers, duration: "3h 01m", price: 200, rating: 8.4, category: "Action", language: "English", year: 2019, seatsLeft: 18, trailer: "TcMBFSGVi1c", section: ["now", "top"], synopsis: "After the devastating events of Infinity War, the Avengers assemble once more to reverse Thanos' actions." },
-  { id: "johnwick", title: "John Wick 4", img: johnwick, backdrop: johnwick, duration: "2h 49m", price: 180, rating: 7.7, category: "Action", language: "English", year: 2023, seatsLeft: 44, trailer: "qEVUtrk8_B4", section: ["now", "recommended"], synopsis: "John Wick uncovers a path to defeating The High Table — but must face a new enemy with powerful alliances." },
-  { id: "spiderman", title: "Spider-Verse", img: spiderman, backdrop: spiderman, duration: "2h 20m", price: 180, rating: 8.6, category: "Student Choice", language: "English / Hindi", year: 2023, seatsLeft: 31, trailer: "cqGjhVJWtEg", section: ["now", "recommended", "top"], synopsis: "Miles Morales catapults across the multiverse, where he encounters a team of Spider-People." },
-  { id: "jujutsu", title: "Jujutsu Kaisen 0", img: spiderman, backdrop: spiderman, duration: "1h 45m", price: 160, rating: 8.0, category: "Anime", language: "Japanese", year: 2022, seatsLeft: 22, trailer: "8UVNT4wvIGY", section: ["upcoming"], synopsis: "Yuta Okkotsu enrolls at the Tokyo Prefectural Jujutsu High School under the tutelage of Satoru Gojo." },
-  { id: "barbie", title: "Comedy Night Live", img: spiderman, backdrop: spiderman, duration: "1h 54m", price: 150, rating: 7.2, category: "Comedy", language: "Hindi", year: 2024, seatsLeft: 39, trailer: "pBk4NYhWNMM", section: ["upcoming"], synopsis: "A laugh-out-loud anthology featuring India's top comedians on the big ArenaVerse screen." },
-  { id: "esports-final", title: "Valorant World Final", img: valorant, backdrop: valorant, duration: "3h 30m", price: 250, rating: 9.1, category: "Esports", language: "English", year: 2025, seatsLeft: 12, trailer: "e_E9W2vsRbQ", section: ["featured", "upcoming"], synopsis: "Live screening of the Valorant Champions Grand Final in cinematic Dolby Atmos." },
-  { id: "trending-thriller", title: "Midnight Protocol", img: cod, backdrop: cod, duration: "2h 12m", price: 190, rating: 8.1, category: "Trending", language: "English", year: 2025, seatsLeft: 47, trailer: "M7lc1UVf-VE", section: ["upcoming", "recommended"], synopsis: "A hacker stumbles upon a conspiracy that puts every connected device on the planet at risk." },
+  { id: "interstellar", title: "Interstellar", img: interstellar, backdrop: interstellar, duration: "2h 49m", price: 200, rating: 8.7, category: "Sci-Fi", language: "English", year: 2014, seatsLeft: 36, trailer: "zSWdZVtXT7E", section: ["featured", "top"], synopsis: "Explorers travel through a wormhole in space in an attempt to ensure humanity's survival." },
+  { id: "dune", title: "Dune: Part Two", img: dune, backdrop: dune, duration: "2h 46m", price: 220, rating: 8.6, category: "Sci-Fi", language: "English", year: 2024, seatsLeft: 28, trailer: "Way9Dexny3w", section: ["featured", "now", "recommended"], synopsis: "Paul Atreides unites with the Fremen while seeking revenge against the conspirators." },
+  { id: "avengers", title: "Avengers: Endgame", img: avengers, backdrop: avengers, duration: "3h 01m", price: 200, rating: 8.4, category: "Action", language: "English", year: 2019, seatsLeft: 18, trailer: "TcMBFSGVi1c", section: ["now", "top"], synopsis: "The Avengers assemble once more to reverse Thanos' actions." },
+  { id: "johnwick", title: "John Wick 4", img: johnwick, backdrop: johnwick, duration: "2h 49m", price: 180, rating: 7.7, category: "Action", language: "English", year: 2023, seatsLeft: 44, trailer: "qEVUtrk8_B4", section: ["now", "recommended"], synopsis: "John Wick uncovers a path to defeating The High Table." },
+  { id: "spiderman", title: "Spider-Verse", img: spiderman, backdrop: spiderman, duration: "2h 20m", price: 180, rating: 8.6, category: "Animation", language: "English / Hindi", year: 2023, seatsLeft: 31, trailer: "cqGjhVJWtEg", section: ["now", "recommended", "top"], synopsis: "Miles Morales catapults across the multiverse." },
+  { id: "jujutsu", title: "Jujutsu Kaisen 0", img: spiderman, backdrop: spiderman, duration: "1h 45m", price: 160, rating: 8.0, category: "Anime", language: "Japanese", year: 2022, seatsLeft: 22, trailer: "8UVNT4wvIGY", section: ["upcoming"], synopsis: "Yuta Okkotsu enrolls at Tokyo Jujutsu High under Satoru Gojo." },
+  { id: "esports-final", title: "Valorant World Final", img: valorant, backdrop: valorant, duration: "3h 30m", price: 250, rating: 9.1, category: "Esports", language: "English", year: 2025, seatsLeft: 12, trailer: "e_E9W2vsRbQ", section: ["featured", "upcoming"], synopsis: "Live screening of the Valorant Champions Grand Final in Dolby Atmos." },
+  { id: "trending-thriller", title: "Midnight Protocol", img: cod, backdrop: cod, duration: "2h 12m", price: 190, rating: 8.1, category: "Thriller", language: "English", year: 2025, seatsLeft: 47, trailer: "M7lc1UVf-VE", section: ["upcoming", "recommended"], synopsis: "A hacker stumbles upon a global conspiracy." },
+  { id: "horror-veil", title: "The Veil", img: johnwick, backdrop: johnwick, duration: "1h 58m", price: 170, rating: 7.4, category: "Horror", language: "English", year: 2025, seatsLeft: 34, trailer: "M7lc1UVf-VE", section: ["upcoming"], synopsis: "A found-footage horror set inside an abandoned observatory." },
+
+  // Bollywood
+  { id: "rockstar", title: "Rockstar", img: spiderman, backdrop: spiderman, duration: "2h 39m", price: 170, rating: 7.7, category: "Bollywood", language: "Hindi", year: 2011, seatsLeft: 40, trailer: "OVfoccVSWpc", section: ["top", "recommended"], synopsis: "An aspiring musician discovers heartbreak fuels the fire of his art." },
+  { id: "prdp", title: "Prem Ratan Dhan Payo", img: avengers, backdrop: avengers, duration: "2h 44m", price: 160, rating: 5.2, category: "Bollywood", language: "Hindi", year: 2015, seatsLeft: 30, trailer: "cvcO7s-YnFY", section: ["recommended"], synopsis: "A theatre artist impersonates a prince amid a royal conspiracy." },
+  { id: "3idiots", title: "3 Idiots", img: interstellar, backdrop: interstellar, duration: "2h 50m", price: 170, rating: 8.4, category: "Comedy", language: "Hindi", year: 2009, seatsLeft: 44, trailer: "K0eDlFX9GMc", section: ["top", "recommended"], synopsis: "Two friends search for their long-lost college buddy who redefined success." },
+  { id: "znmd", title: "Zindagi Na Milegi Dobara", img: dune, backdrop: dune, duration: "2h 35m", price: 170, rating: 8.2, category: "Bollywood", language: "Hindi", year: 2011, seatsLeft: 38, trailer: "FJrpcDgC3zU", section: ["recommended", "top"], synopsis: "Three friends embark on a bachelor road trip through Spain." },
+  { id: "yjhd", title: "Yeh Jawaani Hai Deewani", img: spiderman, backdrop: spiderman, duration: "2h 40m", price: 170, rating: 7.2, category: "Romance", language: "Hindi", year: 2013, seatsLeft: 36, trailer: "AJcmi_YoNqA", section: ["recommended"], synopsis: "A carefree traveler meets a studious young woman on a Himalayan trek." },
+  { id: "dangal", title: "Dangal", img: inception, backdrop: inception, duration: "2h 41m", price: 180, rating: 8.4, category: "Family", language: "Hindi", year: 2016, seatsLeft: 42, trailer: "x_7YlGv9u1g", section: ["top"], synopsis: "A former wrestler trains his daughters to become world-class athletes." },
+  { id: "bhoolb", title: "Bhool Bhulaiyaa", img: johnwick, backdrop: johnwick, duration: "2h 39m", price: 160, rating: 7.4, category: "Horror", language: "Hindi", year: 2007, seatsLeft: 30, trailer: "AVLwsMxwvUE", section: ["recommended"], synopsis: "A psychiatrist unravels a haunting in an ancestral mansion." },
+  { id: "war", title: "War", img: cod, backdrop: cod, duration: "2h 34m", price: 190, rating: 6.5, category: "Action", language: "Hindi", year: 2019, seatsLeft: 28, trailer: "pJZ8sf-nJdM", section: ["now"], synopsis: "An Indian agent hunts down his own rogue mentor." },
+  { id: "animal", title: "Animal", img: johnwick, backdrop: johnwick, duration: "3h 21m", price: 200, rating: 6.6, category: "Thriller", language: "Hindi", year: 2023, seatsLeft: 22, trailer: "Dydmpfo68DA", section: ["now", "recommended"], synopsis: "A son's obsessive devotion turns violent as he protects his father." },
+  { id: "chhaava", title: "Chhaava", img: avengers, backdrop: avengers, duration: "2h 41m", price: 200, rating: 8.1, category: "Bollywood", language: "Hindi", year: 2025, seatsLeft: 18, trailer: "cWq0i9Uu49U", section: ["featured", "upcoming"], synopsis: "The saga of Chhatrapati Sambhaji Maharaj's valour and legacy." },
 ];
 
 export type Game = {
@@ -178,4 +191,71 @@ export const TOURNAMENTS: Tournament[] = [
   { id: "t4", title: "UU Inter-College CoD", game: "Call of Duty", banner: cod, date: "2026-07-20", prize: 25000, entry: 0, participants: 48, status: "student", rules: ["UU students only", "5v5 SnD", "Free entry"] },
   { id: "t5", title: "Tekken 8 Premium Showdown", game: "Tekken 8", banner: tekken, date: "2026-08-02", prize: 75000, entry: 500, participants: 24, status: "premium", rules: ["1v1 Bo5", "Tournament rules", "Premium members"] },
   { id: "t6", title: "NFS Drift Night", game: "Need for Speed", banner: nfs, date: "2026-07-15", prize: 15000, entry: 100, participants: 28, status: "upcoming", rules: ["Time trial", "Drift scoring", "3 attempts"] },
+];
+
+// ==================== WATCH ONLINE (free / officially licensed) ====================
+export type WatchItem = {
+  id: string;
+  title: string;
+  description: string;
+  duration: string;
+  category: "Trailer" | "Documentary" | "Comedy" | "Reality" | "Travel" | "Tech" | "Gaming" | "Campus" | "Public Domain";
+  youtubeId: string;
+  source: string; // official source label
+};
+
+export const WATCH_CATEGORIES = ["All","Trailer","Documentary","Comedy","Reality","Travel","Tech","Gaming","Campus","Public Domain"] as const;
+
+export const WATCH_ONLINE: WatchItem[] = [
+  // Official trailers
+  { id: "w1", title: "Dune: Part Two — Official Trailer", description: "Warner Bros. official trailer.", duration: "3:00", category: "Trailer", youtubeId: "Way9Dexny3w", source: "Warner Bros." },
+  { id: "w2", title: "GTA VI — Official Trailer", description: "Rockstar Games official reveal.", duration: "1:31", category: "Trailer", youtubeId: "QdBZY2fkU-0", source: "Rockstar Games" },
+  { id: "w3", title: "Chhaava — Official Trailer", description: "Maddock Films official trailer.", duration: "3:11", category: "Trailer", youtubeId: "cWq0i9Uu49U", source: "Maddock Films" },
+  { id: "w4", title: "Spider-Verse — Official Trailer", description: "Sony Pictures official trailer.", duration: "2:38", category: "Trailer", youtubeId: "cqGjhVJWtEg", source: "Sony Pictures" },
+
+  // Documentaries (official channels)
+  { id: "w5", title: "NASA: A Year on Mars", description: "NASA-produced documentary on Mars missions.", duration: "22:14", category: "Documentary", youtubeId: "0og6qJIsPzQ", source: "NASA" },
+  { id: "w6", title: "The World in HDR — Planet Earth", description: "BBC Earth official highlights.", duration: "10:02", category: "Documentary", youtubeId: "Xqcs20Fom-Q", source: "BBC Earth" },
+  { id: "w7", title: "Inside a Neutron Star", description: "Kurzgesagt educational documentary.", duration: "9:12", category: "Documentary", youtubeId: "udFxKZRyQt4", source: "Kurzgesagt" },
+
+  // Comedy / Reality / Shows
+  { id: "w8", title: "India's Got Latent — Highlights", description: "Officially uploaded highlight reel.", duration: "18:20", category: "Comedy", youtubeId: "5eWzs-YHRQI", source: "Samay Raina" },
+  { id: "w9", title: "Pretam & Pedro — Ep. 1", description: "Independent web-series (official).", duration: "12:45", category: "Comedy", youtubeId: "M7lc1UVf-VE", source: "Creators" },
+  { id: "w10", title: "MasterChef India — Best Moments", description: "Official Sony Entertainment highlights.", duration: "14:30", category: "Reality", youtubeId: "M7lc1UVf-VE", source: "Sony TV" },
+
+  // Travel / Tech / Gaming / Campus
+  { id: "w11", title: "Iceland in 4K — Travel Film", description: "Officially released short travel film.", duration: "8:04", category: "Travel", youtubeId: "6v2L2UGZJAM", source: "Devin Graham" },
+  { id: "w12", title: "MKBHD — This is the Future", description: "Marques Brownlee official tech feature.", duration: "12:03", category: "Tech", youtubeId: "kIkxq3JXHDs", source: "MKBHD" },
+  { id: "w13", title: "Esports Rewind 2025", description: "Official Riot Games year-in-review.", duration: "6:22", category: "Gaming", youtubeId: "e_E9W2vsRbQ", source: "Riot Games" },
+  { id: "w14", title: "United University Campus Tour", description: "Official campus walkthrough.", duration: "5:10", category: "Campus", youtubeId: "M7lc1UVf-VE", source: "UU Rawatpur" },
+
+  // Public domain classics
+  { id: "w15", title: "Night of the Living Dead (1968)", description: "Public domain horror classic.", duration: "1:35:52", category: "Public Domain", youtubeId: "pElSjmSuvsw", source: "Public Domain" },
+  { id: "w16", title: "Charlie Chaplin — The Kid (1921)", description: "Public domain silent film.", duration: "1:08:15", category: "Public Domain", youtubeId: "BAr9EAAGXhY", source: "Public Domain" },
+];
+
+// ==================== LEADERBOARD (seed data, augmented dynamically) ====================
+export type LeaderboardPlayer = {
+  id: string;
+  name: string;
+  avatar: string; // emoji
+  gamesPlayed: number;
+  highScore: number;
+  tournamentWins: number;
+  coins: number;
+  weekly: number;
+  monthly: number;
+};
+
+export const LEADERBOARD_SEED: LeaderboardPlayer[] = [
+  { id: "p1", name: "NeonNinja", avatar: "🥷", gamesPlayed: 184, highScore: 92450, tournamentWins: 6, coins: 12400, weekly: 2100, monthly: 9800 },
+  { id: "p2", name: "PixelPhantom", avatar: "👾", gamesPlayed: 172, highScore: 88900, tournamentWins: 4, coins: 10850, weekly: 1780, monthly: 8420 },
+  { id: "p3", name: "ShadowByte", avatar: "🕶️", gamesPlayed: 165, highScore: 87200, tournamentWins: 5, coins: 9880, weekly: 1650, monthly: 7900 },
+  { id: "p4", name: "AceRider", avatar: "🏎️", gamesPlayed: 149, highScore: 79800, tournamentWins: 3, coins: 8700, weekly: 1440, monthly: 6820 },
+  { id: "p5", name: "MysticMage", avatar: "🧙", gamesPlayed: 138, highScore: 74200, tournamentWins: 2, coins: 7620, weekly: 1220, monthly: 5980 },
+  { id: "p6", name: "CyberFox", avatar: "🦊", gamesPlayed: 129, highScore: 71100, tournamentWins: 2, coins: 6740, weekly: 1080, monthly: 5210 },
+  { id: "p7", name: "TitanCore", avatar: "🤖", gamesPlayed: 121, highScore: 68950, tournamentWins: 1, coins: 5980, weekly: 940, monthly: 4720 },
+  { id: "p8", name: "BlazePhoenix", avatar: "🔥", gamesPlayed: 114, highScore: 64380, tournamentWins: 1, coins: 5240, weekly: 820, monthly: 4210 },
+  { id: "p9", name: "SonicWave", avatar: "🌊", gamesPlayed: 108, highScore: 61200, tournamentWins: 1, coins: 4820, weekly: 720, monthly: 3820 },
+  { id: "p10", name: "StormEagle", avatar: "🦅", gamesPlayed: 96, highScore: 57980, tournamentWins: 0, coins: 4210, weekly: 640, monthly: 3320 },
 ];

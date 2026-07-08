@@ -102,38 +102,41 @@ function MovieSeats() {
 
             {/* Screen */}
             <div className="mt-6 mx-auto h-2 max-w-md rounded-full bg-gradient-to-r from-transparent via-neon-cyan/60 to-transparent shadow-[0_0_30px_oklch(0.82_0.18_200/0.6)]" />
-            <div className="text-center text-[10px] uppercase tracking-[0.3em] text-muted-foreground mt-2">Screen</div>
+            <div className="text-center text-[10px] uppercase tracking-[0.3em] text-muted-foreground mt-2">Screen · Best view this way</div>
 
-            <div className="mt-6 space-y-2">
-              {ROWS.map(r => (
-                <div key={r} className="flex items-center justify-center gap-2">
-                  <span className="w-5 text-xs text-muted-foreground">{r}</span>
-                  <div className="flex gap-1.5">
-                    {COLS.map(c => {
-                      const id = `${r}${c}`;
-                      const isOcc = occupied.includes(id);
-                      const isSel = draftSeats.includes(id);
-                      const t = tier(r);
-                      return (
-                        <button key={id} disabled={isOcc}
-                          onClick={() => arena.toggleSeat(id)}
-                          title={`${id} · ${t} · ₹${price(r)}`}
-                          className={`h-7 w-7 rounded-md text-[10px] font-semibold transition ${
-                            isOcc ? "bg-muted text-muted-foreground/40 cursor-not-allowed" :
-                            isSel ? "bg-neon-purple text-foreground glow-purple scale-110" :
-                            t === "Premium" ? "bg-neon-gold/15 text-neon-gold hover:bg-neon-gold/30" :
-                            t === "Standard" ? "bg-neon-cyan/15 text-neon-cyan hover:bg-neon-cyan/30" :
-                            "bg-secondary text-muted-foreground hover:bg-secondary/80"
-                          }`}>{c}</button>
-                      );
-                    })}
+            <div className="mt-6 -mx-2 overflow-x-auto pb-2">
+              <div className="min-w-[320px] space-y-1.5 sm:space-y-2 px-2">
+                {ROWS.map(r => (
+                  <div key={r} className="flex items-center justify-center gap-1.5 sm:gap-2">
+                    <span className="w-4 sm:w-5 text-[10px] sm:text-xs text-muted-foreground font-semibold">{r}</span>
+                    <div className="flex gap-1 sm:gap-1.5">
+                      {COLS.map(c => {
+                        const id = `${r}${c}`;
+                        const isOcc = occupied.includes(id);
+                        const isSel = draftSeats.includes(id);
+                        const t = tier(r);
+                        return (
+                          <button key={id} disabled={isOcc}
+                            onClick={() => arena.toggleSeat(id)}
+                            title={`${id} · ${t} · ₹${price(r)}`}
+                            aria-label={`Seat ${id} ${t} ${isOcc ? "occupied" : isSel ? "selected" : "available"}`}
+                            className={`h-6 w-6 sm:h-8 sm:w-8 rounded-md text-[9px] sm:text-[11px] font-semibold transition touch-manipulation ${
+                              isOcc ? "bg-muted text-muted-foreground/40 cursor-not-allowed" :
+                              isSel ? "bg-neon-purple text-foreground glow-purple scale-110 ring-2 ring-neon-cyan" :
+                              t === "Premium" ? "bg-gradient-to-br from-neon-gold/40 to-amber-600/30 text-neon-gold ring-1 ring-neon-gold/60 hover:from-neon-gold/60 hover:to-amber-600/50 shadow-[0_0_10px_oklch(0.85_0.16_85/0.4)]" :
+                              t === "Standard" ? "bg-neon-cyan/15 text-neon-cyan hover:bg-neon-cyan/30" :
+                              "bg-secondary text-muted-foreground hover:bg-secondary/80"
+                            }`}>{c}</button>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
 
-            <div className="mt-6 flex flex-wrap justify-center gap-4 text-[11px] text-muted-foreground">
-              <Legend color="bg-neon-gold/30" label="Premium ₹280" />
+            <div className="mt-6 flex flex-wrap justify-center gap-2 sm:gap-4 text-[10px] sm:text-[11px] text-muted-foreground">
+              <Legend color="bg-gradient-to-br from-neon-gold/60 to-amber-600/40 ring-1 ring-neon-gold/60" label="Premium ₹280" />
               <Legend color="bg-neon-cyan/30" label="Standard ₹200" />
               <Legend color="bg-secondary" label="Economy ₹150" />
               <Legend color="bg-neon-purple" label="Selected" />

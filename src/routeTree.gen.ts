@@ -9,6 +9,7 @@
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
 import { Route as rootRouteImport } from './routes/__root'
+import { Route as WatchRouteImport } from './routes/watch'
 import { Route as SupportRouteImport } from './routes/support'
 import { Route as RewardsRouteImport } from './routes/rewards'
 import { Route as ReceiptRouteImport } from './routes/receipt'
@@ -18,6 +19,7 @@ import { Route as PaymentRouteImport } from './routes/payment'
 import { Route as PassRouteImport } from './routes/pass'
 import { Route as MoviesRouteImport } from './routes/movies'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as FoodRouteImport } from './routes/food'
 import { Route as BookingRouteImport } from './routes/booking'
 import { Route as AboutRouteImport } from './routes/about'
@@ -37,6 +39,11 @@ import { Route as AuthSignupRouteImport } from './routes/auth.signup'
 import { Route as AuthLoginRouteImport } from './routes/auth.login'
 import { Route as AuthGuestLoginRouteImport } from './routes/auth.guest-login'
 
+const WatchRoute = WatchRouteImport.update({
+  id: '/watch',
+  path: '/watch',
+  getParentRoute: () => rootRouteImport,
+} as any)
 const SupportRoute = SupportRouteImport.update({
   id: '/support',
   path: '/support',
@@ -80,6 +87,11 @@ const MoviesRoute = MoviesRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaderboardRoute = LeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FoodRoute = FoodRouteImport.update({
@@ -178,6 +190,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/booking': typeof BookingRoute
   '/food': typeof FoodRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/movies': typeof MoviesRouteWithChildren
   '/pass': typeof PassRoute
@@ -187,6 +200,7 @@ export interface FileRoutesByFullPath {
   '/receipt': typeof ReceiptRoute
   '/rewards': typeof RewardsRoute
   '/support': typeof SupportRoute
+  '/watch': typeof WatchRoute
   '/auth/guest-login': typeof AuthGuestLoginRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
@@ -207,6 +221,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/booking': typeof BookingRoute
   '/food': typeof FoodRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/movies': typeof MoviesRouteWithChildren
   '/pass': typeof PassRoute
@@ -216,6 +231,7 @@ export interface FileRoutesByTo {
   '/receipt': typeof ReceiptRoute
   '/rewards': typeof RewardsRoute
   '/support': typeof SupportRoute
+  '/watch': typeof WatchRoute
   '/auth/guest-login': typeof AuthGuestLoginRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
@@ -237,6 +253,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/booking': typeof BookingRoute
   '/food': typeof FoodRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/movies': typeof MoviesRouteWithChildren
   '/pass': typeof PassRoute
@@ -246,6 +263,7 @@ export interface FileRoutesById {
   '/receipt': typeof ReceiptRoute
   '/rewards': typeof RewardsRoute
   '/support': typeof SupportRoute
+  '/watch': typeof WatchRoute
   '/auth/guest-login': typeof AuthGuestLoginRoute
   '/auth/login': typeof AuthLoginRoute
   '/auth/signup': typeof AuthSignupRoute
@@ -268,6 +286,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/booking'
     | '/food'
+    | '/leaderboard'
     | '/login'
     | '/movies'
     | '/pass'
@@ -277,6 +296,7 @@ export interface FileRouteTypes {
     | '/receipt'
     | '/rewards'
     | '/support'
+    | '/watch'
     | '/auth/guest-login'
     | '/auth/login'
     | '/auth/signup'
@@ -297,6 +317,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/booking'
     | '/food'
+    | '/leaderboard'
     | '/login'
     | '/movies'
     | '/pass'
@@ -306,6 +327,7 @@ export interface FileRouteTypes {
     | '/receipt'
     | '/rewards'
     | '/support'
+    | '/watch'
     | '/auth/guest-login'
     | '/auth/login'
     | '/auth/signup'
@@ -326,6 +348,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/booking'
     | '/food'
+    | '/leaderboard'
     | '/login'
     | '/movies'
     | '/pass'
@@ -335,6 +358,7 @@ export interface FileRouteTypes {
     | '/receipt'
     | '/rewards'
     | '/support'
+    | '/watch'
     | '/auth/guest-login'
     | '/auth/login'
     | '/auth/signup'
@@ -356,6 +380,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BookingRoute: typeof BookingRoute
   FoodRoute: typeof FoodRoute
+  LeaderboardRoute: typeof LeaderboardRoute
   LoginRoute: typeof LoginRoute
   MoviesRoute: typeof MoviesRouteWithChildren
   PassRoute: typeof PassRoute
@@ -365,6 +390,7 @@ export interface RootRouteChildren {
   ReceiptRoute: typeof ReceiptRoute
   RewardsRoute: typeof RewardsRoute
   SupportRoute: typeof SupportRoute
+  WatchRoute: typeof WatchRoute
   AuthGuestLoginRoute: typeof AuthGuestLoginRoute
   AuthLoginRoute: typeof AuthLoginRoute
   AuthSignupRoute: typeof AuthSignupRoute
@@ -380,6 +406,13 @@ export interface RootRouteChildren {
 
 declare module '@tanstack/react-router' {
   interface FileRoutesByPath {
+    '/watch': {
+      id: '/watch'
+      path: '/watch'
+      fullPath: '/watch'
+      preLoaderRoute: typeof WatchRouteImport
+      parentRoute: typeof rootRouteImport
+    }
     '/support': {
       id: '/support'
       path: '/support'
@@ -441,6 +474,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leaderboard': {
+      id: '/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof LeaderboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/food': {
@@ -592,6 +632,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BookingRoute: BookingRoute,
   FoodRoute: FoodRoute,
+  LeaderboardRoute: LeaderboardRoute,
   LoginRoute: LoginRoute,
   MoviesRoute: MoviesRouteWithChildren,
   PassRoute: PassRoute,
@@ -601,6 +642,7 @@ const rootRouteChildren: RootRouteChildren = {
   ReceiptRoute: ReceiptRoute,
   RewardsRoute: RewardsRoute,
   SupportRoute: SupportRoute,
+  WatchRoute: WatchRoute,
   AuthGuestLoginRoute: AuthGuestLoginRoute,
   AuthLoginRoute: AuthLoginRoute,
   AuthSignupRoute: AuthSignupRoute,

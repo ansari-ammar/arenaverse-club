@@ -7,10 +7,12 @@ const MENU: { label: string; to: string; icon: string }[] = [
   { label: "Home", to: "/", icon: "🏠" },
   { label: "Gaming", to: "/gaming/booking", icon: "🎮" },
   { label: "Movies", to: "/movies", icon: "🎬" },
+  { label: "Watch Online", to: "/watch", icon: "📺" },
   { label: "Play Online", to: "/play-online", icon: "🕹️" },
   { label: "Book Experience", to: "/booking", icon: "🎟️" },
   { label: "Food Lounge", to: "/food", icon: "🍿" },
   { label: "Tournaments", to: "/events/tournaments", icon: "🏆" },
+  { label: "Leaderboard", to: "/leaderboard", icon: "📊" },
   { label: "Rewards & Spin", to: "/rewards", icon: "🎡" },
   { label: "My Pass", to: "/pass", icon: "🪪" },
   { label: "Profile", to: "/profile", icon: "👤" },
@@ -74,12 +76,12 @@ export function ArenaShell({ children, title }: { children: ReactNode; title?: s
           </div>
           <nav className="hidden lg:flex items-center gap-5 text-sm text-muted-foreground">
             <Link to="/movies" className="hover:text-foreground">Movies</Link>
+            <Link to="/watch" className="hover:text-foreground">Watch</Link>
             <Link to="/gaming/booking" className="hover:text-foreground">Gaming</Link>
             <Link to="/play-online" className="hover:text-foreground">Play Online</Link>
             <Link to="/events/tournaments" className="hover:text-foreground">Tournaments</Link>
+            <Link to="/leaderboard" className="hover:text-foreground">Leaderboard</Link>
             <Link to="/rewards" className="hover:text-foreground">Rewards</Link>
-            <Link to="/food" className="hover:text-foreground">Food</Link>
-            <Link to="/pass" className="hover:text-foreground">My Pass</Link>
           </nav>
           <div className="flex shrink-0 items-center gap-1.5 sm:gap-2">
             <button
