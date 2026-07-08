@@ -19,6 +19,7 @@ import { Route as PaymentRouteImport } from './routes/payment'
 import { Route as PassRouteImport } from './routes/pass'
 import { Route as MoviesRouteImport } from './routes/movies'
 import { Route as LoginRouteImport } from './routes/login'
+import { Route as LeaderboardRouteImport } from './routes/leaderboard'
 import { Route as FoodRouteImport } from './routes/food'
 import { Route as BookingRouteImport } from './routes/booking'
 import { Route as AboutRouteImport } from './routes/about'
@@ -86,6 +87,11 @@ const MoviesRoute = MoviesRouteImport.update({
 const LoginRoute = LoginRouteImport.update({
   id: '/login',
   path: '/login',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LeaderboardRoute = LeaderboardRouteImport.update({
+  id: '/leaderboard',
+  path: '/leaderboard',
   getParentRoute: () => rootRouteImport,
 } as any)
 const FoodRoute = FoodRouteImport.update({
@@ -184,6 +190,7 @@ export interface FileRoutesByFullPath {
   '/about': typeof AboutRoute
   '/booking': typeof BookingRoute
   '/food': typeof FoodRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/movies': typeof MoviesRouteWithChildren
   '/pass': typeof PassRoute
@@ -214,6 +221,7 @@ export interface FileRoutesByTo {
   '/about': typeof AboutRoute
   '/booking': typeof BookingRoute
   '/food': typeof FoodRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/movies': typeof MoviesRouteWithChildren
   '/pass': typeof PassRoute
@@ -245,6 +253,7 @@ export interface FileRoutesById {
   '/about': typeof AboutRoute
   '/booking': typeof BookingRoute
   '/food': typeof FoodRoute
+  '/leaderboard': typeof LeaderboardRoute
   '/login': typeof LoginRoute
   '/movies': typeof MoviesRouteWithChildren
   '/pass': typeof PassRoute
@@ -277,6 +286,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/booking'
     | '/food'
+    | '/leaderboard'
     | '/login'
     | '/movies'
     | '/pass'
@@ -307,6 +317,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/booking'
     | '/food'
+    | '/leaderboard'
     | '/login'
     | '/movies'
     | '/pass'
@@ -337,6 +348,7 @@ export interface FileRouteTypes {
     | '/about'
     | '/booking'
     | '/food'
+    | '/leaderboard'
     | '/login'
     | '/movies'
     | '/pass'
@@ -368,6 +380,7 @@ export interface RootRouteChildren {
   AboutRoute: typeof AboutRoute
   BookingRoute: typeof BookingRoute
   FoodRoute: typeof FoodRoute
+  LeaderboardRoute: typeof LeaderboardRoute
   LoginRoute: typeof LoginRoute
   MoviesRoute: typeof MoviesRouteWithChildren
   PassRoute: typeof PassRoute
@@ -461,6 +474,13 @@ declare module '@tanstack/react-router' {
       path: '/login'
       fullPath: '/login'
       preLoaderRoute: typeof LoginRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/leaderboard': {
+      id: '/leaderboard'
+      path: '/leaderboard'
+      fullPath: '/leaderboard'
+      preLoaderRoute: typeof LeaderboardRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/food': {
@@ -612,6 +632,7 @@ const rootRouteChildren: RootRouteChildren = {
   AboutRoute: AboutRoute,
   BookingRoute: BookingRoute,
   FoodRoute: FoodRoute,
+  LeaderboardRoute: LeaderboardRoute,
   LoginRoute: LoginRoute,
   MoviesRoute: MoviesRouteWithChildren,
   PassRoute: PassRoute,
