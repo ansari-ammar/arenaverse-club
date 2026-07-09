@@ -41,8 +41,8 @@ export const MOVIES: Movie[] = [
   { id: "spiderman", title: "Spider-Verse", img: spiderman, backdrop: spiderman, duration: "2h 20m", price: 180, rating: 8.6, category: "Animation", language: "English / Hindi", year: 2023, seatsLeft: 31, trailer: "cqGjhVJWtEg", section: ["now", "recommended", "top"], synopsis: "Miles Morales catapults across the multiverse." },
   { id: "jujutsu", title: "Jujutsu Kaisen 0", img: spiderman, backdrop: spiderman, duration: "1h 45m", price: 160, rating: 8.0, category: "Anime", language: "Japanese", year: 2022, seatsLeft: 22, trailer: "8UVNT4wvIGY", section: ["upcoming"], synopsis: "Yuta Okkotsu enrolls at Tokyo Jujutsu High under Satoru Gojo." },
   { id: "esports-final", title: "Valorant World Final", img: valorant, backdrop: valorant, duration: "3h 30m", price: 250, rating: 9.1, category: "Esports", language: "English", year: 2025, seatsLeft: 12, trailer: "e_E9W2vsRbQ", section: ["featured", "upcoming"], synopsis: "Live screening of the Valorant Champions Grand Final in Dolby Atmos." },
-  { id: "trending-thriller", title: "Midnight Protocol", img: cod, backdrop: cod, duration: "2h 12m", price: 190, rating: 8.1, category: "Thriller", language: "English", year: 2025, seatsLeft: 47, trailer: "M7lc1UVf-VE", section: ["upcoming", "recommended"], synopsis: "A hacker stumbles upon a global conspiracy." },
-  { id: "horror-veil", title: "The Veil", img: johnwick, backdrop: johnwick, duration: "1h 58m", price: 170, rating: 7.4, category: "Horror", language: "English", year: 2025, seatsLeft: 34, trailer: "M7lc1UVf-VE", section: ["upcoming"], synopsis: "A found-footage horror set inside an abandoned observatory." },
+  { id: "trending-thriller", title: "Midnight Protocol", img: cod, backdrop: cod, duration: "2h 12m", price: 190, rating: 8.1, category: "Thriller", language: "English", year: 2025, seatsLeft: 47, trailer: "b9EkMc79ZSU", section: ["upcoming", "recommended"], synopsis: "A hacker stumbles upon a global conspiracy." },
+  { id: "horror-veil", title: "The Veil", img: johnwick, backdrop: johnwick, duration: "1h 58m", price: 170, rating: 7.4, category: "Horror", language: "English", year: 2025, seatsLeft: 34, trailer: "b9EkMc79ZSU", section: ["upcoming"], synopsis: "A found-footage horror set inside an abandoned observatory." },
 
   // Bollywood
   { id: "rockstar", title: "Rockstar", img: spiderman, backdrop: spiderman, duration: "2h 39m", price: 170, rating: 7.7, category: "Bollywood", language: "Hindi", year: 2011, seatsLeft: 40, trailer: "OVfoccVSWpc", section: ["top", "recommended"], synopsis: "An aspiring musician discovers heartbreak fuels the fire of his art." },
@@ -220,14 +220,14 @@ export const WATCH_ONLINE: WatchItem[] = [
 
   // Comedy / Reality / Shows
   { id: "w8", title: "India's Got Latent — Highlights", description: "Officially uploaded highlight reel.", duration: "18:20", category: "Comedy", youtubeId: "5eWzs-YHRQI", source: "Samay Raina" },
-  { id: "w9", title: "Pretam & Pedro — Ep. 1", description: "Independent web-series (official).", duration: "12:45", category: "Comedy", youtubeId: "M7lc1UVf-VE", source: "Creators" },
-  { id: "w10", title: "MasterChef India — Best Moments", description: "Official Sony Entertainment highlights.", duration: "14:30", category: "Reality", youtubeId: "M7lc1UVf-VE", source: "Sony TV" },
+  { id: "w9", title: "Big Buck Bunny — Open Comedy Short", description: "Blender Foundation's freely-licensed animated short.", duration: "9:56", category: "Comedy", youtubeId: "aqz-KE-bpKQ", source: "Blender Foundation" },
+  { id: "w10", title: "Sintel — Open Movie", description: "Blender Foundation's award-winning open-license short.", duration: "14:48", category: "Reality", youtubeId: "eRsGyueVLvQ", source: "Blender Foundation" },
 
   // Travel / Tech / Gaming / Campus
   { id: "w11", title: "Iceland in 4K — Travel Film", description: "Officially released short travel film.", duration: "8:04", category: "Travel", youtubeId: "6v2L2UGZJAM", source: "Devin Graham" },
   { id: "w12", title: "MKBHD — This is the Future", description: "Marques Brownlee official tech feature.", duration: "12:03", category: "Tech", youtubeId: "kIkxq3JXHDs", source: "MKBHD" },
   { id: "w13", title: "Esports Rewind 2025", description: "Official Riot Games year-in-review.", duration: "6:22", category: "Gaming", youtubeId: "e_E9W2vsRbQ", source: "Riot Games" },
-  { id: "w14", title: "United University Campus Tour", description: "Official campus walkthrough.", duration: "5:10", category: "Campus", youtubeId: "M7lc1UVf-VE", source: "UU Rawatpur" },
+  { id: "w14", title: "Tears of Steel — Open Short Film", description: "Blender Foundation's live-action open-license short.", duration: "12:14", category: "Campus", youtubeId: "R6MlUcmOul8", source: "Blender Foundation" },
 
   // Public domain classics
   { id: "w15", title: "Night of the Living Dead (1968)", description: "Public domain horror classic.", duration: "1:35:52", category: "Public Domain", youtubeId: "pElSjmSuvsw", source: "Public Domain" },
