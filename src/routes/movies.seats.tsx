@@ -105,28 +105,65 @@ function MovieSeats() {
             <div className="text-center text-[10px] uppercase tracking-[0.3em] text-muted-foreground mt-2">Screen · Best view this way</div>
 
             <div className="mt-6 -mx-2 overflow-x-auto pb-2">
-              <div className="min-w-[320px] space-y-1.5 sm:space-y-2 px-2">
-                {ROWS.map(r => (
-                  <div key={r} className="flex items-center justify-center gap-1.5 sm:gap-2">
-                    <span className="w-4 sm:w-5 text-[10px] sm:text-xs text-muted-foreground font-semibold">{r}</span>
+              <div
+                role="grid"
+                aria-label="Cinema seat map. Use arrow keys to move, Space or Enter to toggle a seat."
+                aria-rowcount={ROWS.length}
+                aria-colcount={COLS.length}
+                className="min-w-[320px] space-y-1.5 sm:space-y-2 px-2"
+                onKeyDown={(e) => {
+                  const target = e.target as HTMLElement;
+                  const r = Number(target.dataset.row);
+                  const c = Number(target.dataset.col);
+                  if (Number.isNaN(r) || Number.isNaN(c)) return;
+                  let nr = r, nc = c;
+                  if (e.key === "ArrowRight") nc = Math.min(COLS.length - 1, c + 1);
+                  else if (e.key === "ArrowLeft") nc = Math.max(0, c - 1);
+                  else if (e.key === "ArrowDown") nr = Math.min(ROWS.length - 1, r + 1);
+                  else if (e.key === "ArrowUp") nr = Math.max(0, r - 1);
+                  else if (e.key === "Home") nc = 0;
+                  else if (e.key === "End") nc = COLS.length - 1;
+                  else return;
+                  e.preventDefault();
+                  const next = e.currentTarget.querySelector<HTMLButtonElement>(
+                    `button[data-row="${nr}"][data-col="${nc}"]`
+                  );
+                  next?.focus();
+                }}
+              >
+                {ROWS.map((r, ri) => (
+                  <div key={r} role="row" className="flex items-center justify-center gap-1.5 sm:gap-2">
+                    <span aria-hidden className="w-4 sm:w-5 text-[10px] sm:text-xs text-muted-foreground font-semibold">{r}</span>
                     <div className="flex gap-1 sm:gap-1.5">
-                      {COLS.map(c => {
+                      {COLS.map((c, ci) => {
                         const id = `${r}${c}`;
                         const isOcc = occupied.includes(id);
                         const isSel = draftSeats.includes(id);
                         const t = tier(r);
+                        const state = isOcc ? "booked" : isSel ? "selected" : "available";
+                        const label = `Row ${r} seat ${c}, ${t} tier, ₹${price(r)}, ${state}`;
+                        const isFirst = ri === 0 && ci === 0;
                         return (
-                          <button key={id} disabled={isOcc}
+                          <button
+                            key={id}
+                            role="gridcell"
+                            data-row={ri}
+                            data-col={ci}
+                            disabled={isOcc}
+                            aria-label={label}
+                            aria-pressed={isSel}
+                            aria-disabled={isOcc}
+                            tabIndex={isFirst ? 0 : -1}
                             onClick={() => arena.toggleSeat(id)}
                             title={`${id} · ${t} · ₹${price(r)}`}
-                            aria-label={`Seat ${id} ${t} ${isOcc ? "occupied" : isSel ? "selected" : "available"}`}
-                            className={`h-6 w-6 sm:h-8 sm:w-8 rounded-md text-[9px] sm:text-[11px] font-semibold transition touch-manipulation ${
+                            className={`h-6 w-6 sm:h-8 sm:w-8 rounded-md text-[9px] sm:text-[11px] font-semibold transition touch-manipulation focus:outline-none focus-visible:ring-2 focus-visible:ring-neon-cyan focus-visible:ring-offset-1 focus-visible:ring-offset-background ${
                               isOcc ? "bg-muted text-muted-foreground/40 cursor-not-allowed" :
-                              isSel ? "bg-neon-purple text-foreground glow-purple scale-110 ring-2 ring-neon-cyan" :
+                              isSel ? "bg-neon-purple text-foreground glow-purple scale-110 ring-2 ring-neon-cyan animate-in zoom-in-50" :
                               t === "Premium" ? "bg-gradient-to-br from-neon-gold/40 to-amber-600/30 text-neon-gold ring-1 ring-neon-gold/60 hover:from-neon-gold/60 hover:to-amber-600/50 shadow-[0_0_10px_oklch(0.85_0.16_85/0.4)]" :
                               t === "Standard" ? "bg-neon-cyan/15 text-neon-cyan hover:bg-neon-cyan/30" :
                               "bg-secondary text-muted-foreground hover:bg-secondary/80"
-                            }`}>{c}</button>
+                            }`}
+                          >{c}</button>
                         );
                       })}
                     </div>
@@ -134,6 +171,7 @@ function MovieSeats() {
                 ))}
               </div>
             </div>
+
 
             <div className="mt-6 flex flex-wrap justify-center gap-2 sm:gap-4 text-[10px] sm:text-[11px] text-muted-foreground">
               <Legend color="bg-gradient-to-br from-neon-gold/60 to-amber-600/40 ring-1 ring-neon-gold/60" label="Premium ₹280" />
