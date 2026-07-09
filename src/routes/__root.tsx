@@ -12,6 +12,8 @@ import { useEffect, type ReactNode } from "react";
 import appCss from "../styles.css?url";
 import logoAsset from "../assets/arenaverse-logo.asset.json";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { AmbientFX } from "../components/arena/AmbientFX";
+import { InteractionsBoot } from "../components/arena/InteractionsBoot";
 
 function NotFoundComponent() {
   return (
