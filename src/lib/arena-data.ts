@@ -220,14 +220,14 @@ export const WATCH_ONLINE: WatchItem[] = [
 
   // Comedy / Reality / Shows
   { id: "w8", title: "India's Got Latent — Highlights", description: "Officially uploaded highlight reel.", duration: "18:20", category: "Comedy", youtubeId: "5eWzs-YHRQI", source: "Samay Raina" },
-  { id: "w9", title: "Pretam & Pedro — Ep. 1", description: "Independent web-series (official).", duration: "12:45", category: "Comedy", youtubeId: "M7lc1UVf-VE", source: "Creators" },
-  { id: "w10", title: "MasterChef India — Best Moments", description: "Official Sony Entertainment highlights.", duration: "14:30", category: "Reality", youtubeId: "M7lc1UVf-VE", source: "Sony TV" },
+  { id: "w9", title: "Big Buck Bunny — Open Comedy Short", description: "Blender Foundation's freely-licensed animated short.", duration: "9:56", category: "Comedy", youtubeId: "aqz-KE-bpKQ", source: "Blender Foundation" },
+  { id: "w10", title: "Sintel — Open Movie", description: "Blender Foundation's award-winning open-license short.", duration: "14:48", category: "Reality", youtubeId: "eRsGyueVLvQ", source: "Blender Foundation" },
 
   // Travel / Tech / Gaming / Campus
   { id: "w11", title: "Iceland in 4K — Travel Film", description: "Officially released short travel film.", duration: "8:04", category: "Travel", youtubeId: "6v2L2UGZJAM", source: "Devin Graham" },
   { id: "w12", title: "MKBHD — This is the Future", description: "Marques Brownlee official tech feature.", duration: "12:03", category: "Tech", youtubeId: "kIkxq3JXHDs", source: "MKBHD" },
   { id: "w13", title: "Esports Rewind 2025", description: "Official Riot Games year-in-review.", duration: "6:22", category: "Gaming", youtubeId: "e_E9W2vsRbQ", source: "Riot Games" },
-  { id: "w14", title: "United University Campus Tour", description: "Official campus walkthrough.", duration: "5:10", category: "Campus", youtubeId: "M7lc1UVf-VE", source: "UU Rawatpur" },
+  { id: "w14", title: "Tears of Steel — Open Short Film", description: "Blender Foundation's live-action open-license short.", duration: "12:14", category: "Campus", youtubeId: "R6MlUcmOul8", source: "Blender Foundation" },
 
   // Public domain classics
   { id: "w15", title: "Night of the Living Dead (1968)", description: "Public domain horror classic.", duration: "1:35:52", category: "Public Domain", youtubeId: "pElSjmSuvsw", source: "Public Domain" },
